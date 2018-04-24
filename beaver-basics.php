@@ -15,7 +15,8 @@
 function dwbb__load_modules()
 {
   if ( class_exists( 'FLBuilder' ) ) {
-    include_once( 'modules/search-form/search-form.php');
+    include_once( 'modules/dwbb-heading/dwbb-heading.php');
+    include_once( 'modules/dwbb-search-form/dwbb-search-form.php');
   }
 }
 add_action( 'init', 'dwbb__load_modules' );
