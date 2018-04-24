@@ -3,7 +3,7 @@
  * Plugin Name: Beaver Basics
  * Plugin URI: TBD
  * Description: Simple modules for Beaver Builder
- * Version: 2.0.6.4
+ * Version: 0.0.0.2
  * Author: Dish Works
  * Author URI: https://www.dish-works.com/
  * Copyright: (c) 2018 Dish Works
