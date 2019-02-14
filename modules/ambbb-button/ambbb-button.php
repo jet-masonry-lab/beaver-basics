@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @class DWBBButtonModule
+ * @class ambbbButtonModule
  */
-class DWBBButtonModule extends FLBuilderModule
+class ambbbButtonModule extends FLBuilderModule
 {
   public function __construct()
   {
     parent::__construct(array(
-      'name'            => __( 'Button', 'dw-beaver-basics' ),
-      'description'     => __( 'A simple button, no style options.', 'dw-beaver-basics' ),
-      'group'           => __( 'Beaver Basics', 'dw-beaver-basics' ),
-      'category'        => __( 'Basic', 'dw-beaver-basics' ),
+      'name'            => __( 'Button', 'amb-beaver-basics' ),
+      'description'     => __( 'A simple button, no style options.', 'amb-beaver-basics' ),
+      'group'           => __( 'Beaver Basics', 'amb-beaver-basics' ),
+      'category'        => __( 'Basic', 'amb-beaver-basics' ),
       'dir'             => plugin_dir_path( __FILE__ ),
       'url'             => plugins_url( '/', __FILE__ )
     ));
@@ -19,7 +19,7 @@ class DWBBButtonModule extends FLBuilderModule
 }
 
 // Register the module
-FLBuilder::register_module( 'DWBBButtonModule', array(
+FLBuilder::register_module( 'ambbbButtonModule', array(
   'general'       => array(
     'title'         => __( 'General', 'fl-builder' ),
     'sections'      => array(

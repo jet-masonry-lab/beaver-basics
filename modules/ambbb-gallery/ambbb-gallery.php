@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @class DWBBGalleryModule
+ * @class ambbbGalleryModule
  */
-class DWBBGalleryModule extends FLBuilderModule
+class ambbbGalleryModule extends FLBuilderModule
 {
   public function __construct()
   {
     parent::__construct(array(
-      'name'            => __( 'Gallery', 'dw-beaver-basics' ),
-      'description'     => __( 'A simple gallery, no style options.', 'dw-beaver-basics' ),
-      'group'           => __( 'Beaver Basics', 'dw-beaver-basics' ),
-      'category'        => __( 'Basic', 'dw-beaver-basics' ),
+      'name'            => __( 'Gallery', 'amb-beaver-basics' ),
+      'description'     => __( 'A simple gallery, no style options.', 'amb-beaver-basics' ),
+      'group'           => __( 'Beaver Basics', 'amb-beaver-basics' ),
+      'category'        => __( 'Basic', 'amb-beaver-basics' ),
       'dir'             => plugin_dir_path( __FILE__ ),
       'url'             => plugins_url( '/', __FILE__ )
     ));
@@ -22,36 +22,36 @@ class DWBBGalleryModule extends FLBuilderModule
 // https://codex.wordpress.org/Gallery_Shortcode
 
 // Register the module
-FLBuilder::register_module( 'DWBBGalleryModule', array(
+FLBuilder::register_module( 'ambbbGalleryModule', array(
   'general'       => array(
-    'title'         => __( 'General', 'dw-beaver-basics' ),
+    'title'         => __( 'General', 'amb-beaver-basics' ),
     'sections'      => array(
       'general'       => array(
         'title'         => '',
         'fields'        => array(
           'photos'        => array(
             'type'          => 'multiple-photos',
-            'label'         => __( 'Photos', 'dw-beaver-basics' ),
+            'label'         => __( 'Photos', 'amb-beaver-basics' ),
             'connections'   => array( 'multiple-photos' ),
           ),
           'columns'       => array(
             'type'        => 'unit',
-            'label'       => __( 'Columns', 'dw-beaver-basics' ),
+            'label'       => __( 'Columns', 'amb-beaver-basics' ),
             'description' => 'columns',
           ),
           'size'          => array(
             'type'          => 'photo-sizes',
-            'label'         => __( 'Size', 'dw-beaver-basics' ),
+            'label'         => __( 'Size', 'amb-beaver-basics' ),
             'default'       => 'medium'
           ),
           'link'          => array(
             'type'          => 'select',
-            'label'         => __( 'Link', 'dw-beaver-basics' ),
+            'label'         => __( 'Link', 'amb-beaver-basics' ),
             'default'       => 'none',
             'options'       => array(
-              'none'           => __( 'None', 'dw-beaver-basics' ),
-              'permalink'      => __( 'Permalink', 'dw-beaver-basics' ),
-              'file'           => __( 'File', 'dw-beaver-basics' )
+              'none'           => __( 'None', 'amb-beaver-basics' ),
+              'permalink'      => __( 'Permalink', 'amb-beaver-basics' ),
+              'file'           => __( 'File', 'amb-beaver-basics' )
             ),
           ),
         )

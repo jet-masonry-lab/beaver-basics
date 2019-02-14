@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @class DWBBHeadingModule
+ * @class ambbbHeadingModule
  */
-class DWBBHeadingModule extends FLBuilderModule
+class ambbbHeadingModule extends FLBuilderModule
 {
   public function __construct()
   {
     parent::__construct(array(
-      'name'            => __( 'Heading', 'dw-beaver-basics' ),
-      'description'     => __( 'A simple heading, no style options.', 'dw-beaver-basics' ),
-      'group'           => __( 'Beaver Basics', 'dw-beaver-basics' ),
-      'category'        => __( 'Basic', 'dw-beaver-basics' ),
+      'name'            => __( 'Heading', 'amb-beaver-basics' ),
+      'description'     => __( 'A simple heading, no style options.', 'amb-beaver-basics' ),
+      'group'           => __( 'Beaver Basics', 'amb-beaver-basics' ),
+      'category'        => __( 'Basic', 'amb-beaver-basics' ),
       'dir'             => plugin_dir_path( __FILE__ ),
       'url'             => plugins_url( '/', __FILE__ )
     ));
@@ -19,21 +19,21 @@ class DWBBHeadingModule extends FLBuilderModule
 }
 
 // Register the module
-FLBuilder::register_module( 'DWBBHeadingModule', array(
+FLBuilder::register_module( 'ambbbHeadingModule', array(
   'general' => array(
-    'title'     => __( 'General', 'dw-beaver-basics' ),
+    'title'     => __( 'General', 'amb-beaver-basics' ),
     'sections'  => array(
       'general'   => array(
         'title'         => '',
         'fields'        => array(
           'content'        => array(
             'type'            => 'text',
-            'label'           => __( 'Content', 'dw-beaver-basics' ),
+            'label'           => __( 'Content', 'amb-beaver-basics' ),
             'default'         => ''
           ),
           'tag'           => array(
             'type'          => 'select',
-            'label'         => __( 'HTML Tag', 'dw-beaver-basics' ),
+            'label'         => __( 'HTML Tag', 'amb-beaver-basics' ),
             'default'       => 'h2',
             'options'       => array(
               'h1'            => 'h1',
