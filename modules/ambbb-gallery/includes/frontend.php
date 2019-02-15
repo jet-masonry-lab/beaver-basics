@@ -11,32 +11,32 @@ if (
   && ! empty( $settings->post_id )
   && preg_match( '/^[0-9]+$/', $settings->post_id )
 ) {
-  $gallery_attributes['id'] = $settings->post_id;
+  $gallery_attributes['id'] = esc_attr( $settings->post_id );
 } else if (
   'custom' == $settings->source
   && ! empty( $settings->images )
 ) {
-  $gallery_attributes['ids'] = implode( ',', $settings->images );
+  $gallery_attributes['ids'] = esc_attr( implode( ',', $settings->images ) );
 };
 
 if ( ! empty( $settings->orderby ) ) {
-  $gallery_attributes['orderby'] = $settings->orderby;
+  $gallery_attributes['orderby'] = esc_attr( $settings->orderby );
 };
 
 if ( ! empty( $settings->orderby ) ) {
-  $gallery_attributes['order'] = $settings->order;
+  $gallery_attributes['order'] = esc_attr( $settings->order );
 };
 
 if ( isset( $settings->columns ) && preg_match( '/^[0-9]+$/', $settings->columns ) ) {
-  $gallery_attributes['columns'] = $settings->columns;
+  $gallery_attributes['columns'] = esc_attr( $settings->columns );
 }
 
 if ( ! empty( $settings->size ) ) {
-  $gallery_attributes['size'] = $settings->size;
+  $gallery_attributes['size'] = esc_attr( $settings->size );
 }
 
 if ( ! empty( $settings->link ) ) {
-  $gallery_attributes['link'] = $settings->link;
+  $gallery_attributes['link'] = esc_attr( $settings->link );
 }
 
 $gallery_attributes_inline = array_map( function( $key, $value ) {

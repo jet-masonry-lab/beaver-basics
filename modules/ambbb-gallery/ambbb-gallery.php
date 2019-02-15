@@ -38,8 +38,8 @@ FLBuilder::register_module( 'ambbbGalleryModule', array(
               'custom'        => __( 'Specific images', 'amb-beaver-basics' ),
             ),
             'toggle'    => array(
-              'post_id'      => array(
-                'fields'   => array( 'post' ),
+              'post'      => array(
+                'fields'   => array( 'post_id' ),
               ),
               'custom'    => array(
                 'fields'    => array( 'images' ),
@@ -49,7 +49,7 @@ FLBuilder::register_module( 'ambbbGalleryModule', array(
           'post_id'        => array(
             'type'          => 'unit',
             'label'         => __( 'Source Post ID', 'amb-beaver-basics' ),
-            'description'   => '',
+            'description'   => '(defaults to current post)',
           ),
           'images'        => array(
             'type'          => 'multiple-photos',
