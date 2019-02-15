@@ -29,7 +29,12 @@ FLBuilder::register_module( 'ambbbHeadingModule', array(
           'content'        => array(
             'type'            => 'text',
             'label'           => __( 'Content', 'amb-beaver-basics' ),
-            'default'         => ''
+            'default'         => '',
+            'preview'       => array(
+              'type'              => 'text',
+              'selector'          => '.c-heading',
+            ),
+            'connections'         => array( 'string' ),
           ),
           'tag'           => array(
             'type'          => 'select',

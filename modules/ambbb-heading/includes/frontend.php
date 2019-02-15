@@ -4,7 +4,7 @@
 // - $id
 // - $settings
 
-$heading_format = '<%1$s>%2$s</%1$s>';
+$heading_format = '<%1$s class="c-heading">%2$s</%1$s>';
 
 echo sprintf(
   $heading_format,
