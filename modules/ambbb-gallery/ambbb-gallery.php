@@ -26,15 +26,63 @@ FLBuilder::register_module( 'ambbbGalleryModule', array(
   'general'       => array(
     'title'         => __( 'General', 'amb-beaver-basics' ),
     'sections'      => array(
-      'general'       => array(
-        'title'         => '',
+      'content'       => array(
+        'title'         => __( 'Gallery Content', 'amb-beaver-basics' ),
         'fields'        => array(
-          'photos'        => array(
+          'source'        => array(
+            'type'         => 'select',
+            'label'        => __( 'Which Images', 'amb-beaver-basics' ),
+            'default'      => 'post',
+            'options'       => array(
+              'post'          => __( 'All images attached to a post', 'amb-beaver-basics' ),
+              'custom'        => __( 'Specific images', 'amb-beaver-basics' ),
+            ),
+            'toggle'    => array(
+              'post_id'      => array(
+                'fields'   => array( 'post' ),
+              ),
+              'custom'    => array(
+                'fields'    => array( 'images' ),
+              )
+            )
+          ),
+          'post_id'        => array(
+            'type'          => 'unit',
+            'label'         => __( 'Source Post ID', 'amb-beaver-basics' ),
+            'description'   => '',
+          ),
+          'images'        => array(
             'type'          => 'multiple-photos',
-            'label'         => __( 'Photos', 'amb-beaver-basics' ),
+            'label'         => __( 'Images', 'amb-beaver-basics' ),
             'connections'   => array( 'multiple-photos' ),
           ),
-          'columns'       => array(
+        )
+      ),
+      'structure'       => array(
+        'title'         => __( 'Gallery Structure', 'amb-beaver-basics' ),
+        'fields'        => array(
+          'orderby'        => array(
+            'type'         => 'select',
+            'label'        => __( 'Order By', 'amb-beaver-basics' ),
+            'default'      => 'menu_order',
+            'options'       => array(
+              'menu_order'    => __( 'Menu Order', 'amb-beaver-basics' ),
+              'title'         => __( 'Title', 'amb-beaver-basics' ),
+              'post_date'     => __( 'Post Date', 'amb-beaver-basics' ),
+              'rand'          => __( 'Random', 'amb-beaver-basics' ),
+              'ID'            => __( 'ID', 'amb-beaver-basics' ),
+            ),
+          ),
+          'order'        => array(
+            'type'         => 'select',
+            'label'        => __( 'Sort Order', 'amb-beaver-basics' ),
+            'default'      => 'ASC',
+            'options'       => array(
+              'ASC'           => __( 'Ascending', 'amb-beaver-basics' ),
+              'DESC'          => __( 'Descending', 'amb-beaver-basics' ),
+            ),
+          ),
+          'columns'      => array(
             'type'        => 'unit',
             'label'       => __( 'Columns', 'amb-beaver-basics' ),
             'description' => 'columns',

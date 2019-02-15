@@ -4,18 +4,37 @@
 // - $id
 // - $settings
 
-$gallery_attributes = array(
-  'ids' => ''
-);
-if ( ! empty( $settings->photos ) ) {
-  $gallery_attributes['ids'] = implode( ',', $settings->photos );
+// if sourcing from a post, WP will automatically default to current post
+// but if a post is selected, use that as the "id" attribute
+if (
+  'post' == $settings->source
+  && ! empty( $settings->post_id )
+  && preg_match( '/^[0-9]+$/', $settings->post_id )
+) {
+  $gallery_attributes['id'] = $settings->post_id;
+} else if (
+  'custom' == $settings->source
+  && ! empty( $settings->images )
+) {
+  $gallery_attributes['ids'] = implode( ',', $settings->images );
 };
-if ( ! empty( $settings->columns ) ) {
+
+if ( ! empty( $settings->orderby ) ) {
+  $gallery_attributes['orderby'] = $settings->orderby;
+};
+
+if ( ! empty( $settings->orderby ) ) {
+  $gallery_attributes['order'] = $settings->order;
+};
+
+if ( isset( $settings->columns ) && preg_match( '/^[0-9]+$/', $settings->columns ) ) {
   $gallery_attributes['columns'] = $settings->columns;
 }
+
 if ( ! empty( $settings->size ) ) {
   $gallery_attributes['size'] = $settings->size;
 }
+
 if ( ! empty( $settings->link ) ) {
   $gallery_attributes['link'] = $settings->link;
 }
@@ -34,4 +53,4 @@ $gallery_shortcode = sprintf(
 );
 ?>
 
-<?= apply_filters( 'the_content', $gallery_shortcode ); ?>
+<?= $gallery_shortcode ?>
