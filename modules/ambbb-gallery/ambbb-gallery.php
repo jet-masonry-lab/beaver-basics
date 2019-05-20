@@ -67,6 +67,7 @@ FLBuilder::register_module( 'ambbbGalleryModule', array(
             'default'      => 'menu_order',
             'options'       => array(
               'menu_order'    => __( 'Menu Order', 'amb-beaver-basics' ),
+              'post__in'      => __( 'Included Order', 'amb-beaver-basics' ),
               'title'         => __( 'Title', 'amb-beaver-basics' ),
               'post_date'     => __( 'Post Date', 'amb-beaver-basics' ),
               'rand'          => __( 'Random', 'amb-beaver-basics' ),
