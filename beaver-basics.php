@@ -15,6 +15,7 @@
 function ambbb__load_modules()
 {
   if ( class_exists( 'FLBuilder' ) ) {
+    include_once( 'modules/ambbb-acf-frontend-form/ambbb-acf-frontend-form.php');
     include_once( 'modules/ambbb-button/ambbb-button.php');
     include_once( 'modules/ambbb-gallery/ambbb-gallery.php');
     include_once( 'modules/ambbb-heading/ambbb-heading.php');
