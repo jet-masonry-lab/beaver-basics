@@ -59,8 +59,8 @@ FLBuilder::register_module( 'ambbbPostModule', [
             'label' => __( 'Include Meta', 'amb-beaver-basics' ),
             'default' => 'no',
             'options' => [
-              'yes' => 'Yes',
-              'no' => 'No',
+              'yes' => __( 'Yes', 'amb-beaver-basics' ),
+              'no' => __( 'No', 'amb-beaver-basics' ),
             ],
             'toggle' => [
               'yes' => [ 'fields' => [ 'include_meta_date', 'include_meta_author' ], ],
@@ -73,8 +73,8 @@ FLBuilder::register_module( 'ambbbPostModule', [
             'label' => __( 'Include Date', 'amb-beaver-basics' ),
             'default' => 'no',
             'options' => [
-              'yes' => 'Yes',
-              'no' => 'No',
+              'yes' => __( 'Yes', 'amb-beaver-basics' ),
+              'no' => __( 'No', 'amb-beaver-basics' ),
             ],
           ],
 
@@ -83,8 +83,8 @@ FLBuilder::register_module( 'ambbbPostModule', [
             'label' => __( 'Include Author', 'amb-beaver-basics' ),
             'default' => 'no',
             'options' => [
-              'yes' => 'Yes',
-              'no' => 'No',
+              'yes' => __( 'Yes', 'amb-beaver-basics' ),
+              'no' => __( 'No', 'amb-beaver-basics' ),
             ],
           ],
 
@@ -93,8 +93,8 @@ FLBuilder::register_module( 'ambbbPostModule', [
             'label' => __( 'Include Excerpt', 'amb-beaver-basics' ),
             'default' => 'yes',
             'options' => [
-              'yes' => 'Yes',
-              'no' => 'No',
+              'yes' => __( 'Yes', 'amb-beaver-basics' ),
+              'no' => __( 'No', 'amb-beaver-basics' ),
             ],
           ],
 
@@ -149,8 +149,8 @@ FLBuilder::register_module( 'ambbbPostModule', [
             'label' => __( 'Link Type', 'amb-beaver-basics' ),
             'default' => 'block',
             'options' => [
-              'block' => 'Block',
-              'parts' => 'Parts',
+              'block' => __( 'Block', 'amb-beaver-basics' ),
+              'parts' => __( 'Parts', 'amb-beaver-basics' ),
             ],
             'description' => __( 'Choosing "Parts" will make the thumbnail, title and optional "More Text" into links.', 'amb-beaver-basics' ),
           ],

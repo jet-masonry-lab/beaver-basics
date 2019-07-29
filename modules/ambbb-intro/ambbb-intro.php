@@ -96,8 +96,8 @@ FLBuilder::register_module( 'ambbbIntroModule', [
             'label' => __( 'Eyebrow Relationship', 'amb-beaver-basics' ),
             'default' => 'sibling',
             'options' => [
-              'child' => 'Child',
-              'sibling' => 'Sibling',
+              'child' => __( 'Child', 'amb-beaver-basics' ),
+              'sibling' => __( 'Sibling', 'amb-beaver-basics' ),
             ],
             'description' => __( 'Should the eyebrow text be a child of the heading tag or a sibling?'),
             'toggle' => [
@@ -134,8 +134,8 @@ FLBuilder::register_module( 'ambbbIntroModule', [
             'label' => __( 'Body Relationship', 'amb-beaver-basics' ),
             'default' => 'sibling',
             'options' => [
-              'child' => 'Child',
-              'sibling' => 'Sibling',
+              'child' => __( 'Child', 'amb-beaver-basics' ),
+              'sibling' => __( 'Sibling', 'amb-beaver-basics' ),
             ],
             'description' => __( 'Should the body text be a child of the heading tag or a sibling?'),
             'toggle' => [

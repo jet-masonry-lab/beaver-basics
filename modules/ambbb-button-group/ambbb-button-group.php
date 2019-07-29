@@ -44,8 +44,8 @@ FLBuilder::register_module( 'ambbbButtonGroupModule', [
             'multiple' => true,
           ],
 
-        ]
-      ]
-    ]
-  ]
+        ],
+      ],
+    ],
+  ],
 ] );

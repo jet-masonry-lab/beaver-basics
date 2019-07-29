@@ -39,9 +39,9 @@ FLBuilder::register_settings_form('ambbb-button-form', [
               'label' => __( 'Button Style', 'amb-beaver-basics' ),
               'default' => 'primary',
               'options' => [
-                'primary' => 'Primary',
-                'secondary' => 'Secondary',
-                'link' => 'Link',
+                'primary' => __( 'Primary', 'amb-beaver-basics' ),
+                'secondary' => __( 'Secondary', 'amb-beaver-basics' ),
+                'link' => __( 'Link', 'amb-beaver-basics' ),
               ],
             ],
 
@@ -49,7 +49,6 @@ FLBuilder::register_settings_form('ambbb-button-form', [
               'type' => 'text',
               'label' => __( 'Variation', 'amb-beaver-basics' ),
               'default' => '',
-              'description' => __( '', 'amb-beaver-basics' ),
               'placeholder' => __( 'primary', 'amb-beaver-basics' ),
               'multiple' => true,
             ],

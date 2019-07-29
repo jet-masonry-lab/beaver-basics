@@ -117,10 +117,10 @@ FLBuilder::register_module( 'ambbbCSVToTableModule', [
             'label' => __( 'Headers', 'amb-beaver-basics' ),
             'default' => 'col',
             'options' => [
-              'none' => 'None',
-              'col'=> 'For Cols',
-              'row' => 'For Rows',
-              'both' => 'Both',
+              'none' => __( 'None', 'amb-beaver-basics' ),
+              'col'=> __( 'For Cols', 'amb-beaver-basics' ),
+              'row' => __( 'For Rows', 'amb-beaver-basics' ),
+              'both' => __( 'Both', 'amb-beaver-basics' ),
             ],
             'preview' => [
               'type' => 'none',
@@ -133,8 +133,8 @@ FLBuilder::register_module( 'ambbbCSVToTableModule', [
             'label' => __( 'Delimiter', 'amb-beaver-basics' ),
             'default' => 'comma',
             'options' => [
-              'comma' => 'Comma (CSV)',
-              'tab' => 'Tab (TSV)',
+              'comma' => __( 'Comma (CSV)', 'amb-beaver-basics' ),
+              'tab' => __( 'Tab (TSV)', 'amb-beaver-basics' ),
             ],
             'preview' => [
               'type' => 'none',
