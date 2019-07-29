@@ -21,6 +21,8 @@ function ambbb__load_modules()
     include_once( 'modules/ambbb-menu/ambbb-menu.php');
     include_once( 'modules/ambbb-quote/ambbb-quote.php');
     include_once( 'modules/ambbb-search-form/ambbb-search-form.php');
+    include_once( 'modules/ambbb-tax-term-list/ambbb-tax-term-list.php');
+
   }
 }
 add_action( 'init', 'ambbb__load_modules' );
