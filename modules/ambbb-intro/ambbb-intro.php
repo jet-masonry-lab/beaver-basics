@@ -20,7 +20,7 @@ FLBuilder::register_module( 'ambbbIntroModule', [
     'title' => __( 'Content', 'amb-beaver-basics' ),
     'sections' => [
       'content' => [
-        'title' => __( '', 'amb-beaver-basics' ),
+        'title' => '',
         'fields' => [
 
           'eyebrow' => [

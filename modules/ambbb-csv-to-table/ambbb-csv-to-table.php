@@ -105,10 +105,10 @@ class ambbbCSVToTableModule extends FLBuilderModule
 }
 
 FLBuilder::register_module( 'ambbbCSVToTableModule', [
-  'general' => [
-    'title' => __( 'General', 'amb-beaver-basics' ),
+  'content' => [
+    'title' => __( 'Content', 'amb-beaver-basics' ),
     'sections' => [
-      'general' => [
+      'content' => [
         'title' => '',
         'fields' => [
 
