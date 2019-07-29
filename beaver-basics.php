@@ -24,6 +24,7 @@ function ambbb__load_modules()
     include_once( 'modules/ambbb-button-group/ambbb-button-group.php');
     include_once( 'modules/ambbb-gallery/ambbb-gallery.php');
     include_once( 'modules/ambbb-heading/ambbb-heading.php');
+    include_once( 'modules/ambbb-intro/ambbb-intro.php');
     include_once( 'modules/ambbb-menu/ambbb-menu.php');
     include_once( 'modules/ambbb-quote/ambbb-quote.php');
     include_once( 'modules/ambbb-search-form/ambbb-search-form.php');
