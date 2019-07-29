@@ -27,10 +27,11 @@ function ambbb__load_modules()
     include_once( 'modules/ambbb-heading/ambbb-heading.php');
     include_once( 'modules/ambbb-intro/ambbb-intro.php');
     include_once( 'modules/ambbb-menu/ambbb-menu.php');
+    include_once( 'modules/ambbb-post/ambbb-post.php');
     include_once( 'modules/ambbb-quote/ambbb-quote.php');
     include_once( 'modules/ambbb-search-form/ambbb-search-form.php');
     include_once( 'modules/ambbb-tax-term-list/ambbb-tax-term-list.php');
 
   }
 }
-add_action( 'init', 'ambbb__load_modules' );
+add_action( 'init', 'ambbb__load_modules', 9999 ); // register with late priority to improve chances that other customizations are complete (e.g. custom post types registered)
