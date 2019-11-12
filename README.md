@@ -1,3 +1,3 @@
-# beaver-basics
+# Beaver Basics
 
-test adding something
+Markup-focuses, minimally-styled modules for Beaver Builder.
