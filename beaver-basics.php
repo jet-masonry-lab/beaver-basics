@@ -3,7 +3,7 @@
  * Plugin Name: Beaver Basics
  * Plugin URI: TBD
  * Description: Simple modules for Beaver Builder
- * Version: 0.0.0.3
+ * Version: 0.0.0.4
  * Author: Alert My Banjos
  * Author URI: https://www.alert-my-banjos.com/
  * Copyright: (c) 2019 Alert My Banjos
