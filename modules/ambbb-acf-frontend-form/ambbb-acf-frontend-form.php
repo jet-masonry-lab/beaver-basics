@@ -285,7 +285,7 @@ FLBuilder::register_module( 'ambbbAcfFrontendFormModule', [
           'submit_value' => [
             'type' => 'text',
             'label' => __( 'Submit Button Text', 'amb-beaver-basics' ),
-            'placeholder' => __( 'Update', 'acf' ),
+            'placeholder' => __( 'Update', 'amb-beaver-basics' ),
             'connections' => [ 'text' ],
           ],
 
@@ -306,7 +306,7 @@ FLBuilder::register_module( 'ambbbAcfFrontendFormModule', [
           'updated_message' => [
             'type' => 'text',
             'label' => __( 'Updated Message', 'amb-beaver-basics' ),
-            'placeholder' => __( 'Post updated', 'acf' ),
+            'placeholder' => __( 'Post updated', 'amb-beaver-basics' ),
             'description' => __( 'A message displayed above the form after being redirected. Can also be set to false for no message.', 'amb-beaver-basics' ),
             'connections' => [ 'text' ],
           ],

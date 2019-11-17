@@ -1,0 +1,71 @@
+.ambbb-image-grid {
+  --ambbb-image-grid-gap: 1rem;
+  --ambbb-image-grid-cols: 1;
+  --ambbb-image-grid-margin: 0;
+  --ambbb-image-grid-figure-width: 100%;
+}
+.ambbb-image-grid--layout {
+  margin: calc( -1 * var( --ambbb-image-grid-margin ) );
+}
+.ambbb-image-grid--layout\:flexbox {
+  --ambbb-image-grid-margin: calc( var ( --ambbb-image-grid-gap ) / 2 );
+  --ambbb-image-grid-figure-width: calc( 100% / var( --ambbb-image-grid-cols ) - var( --ambbb-image-grid-gap ) );
+  -webkit-box-align: start;
+          align-items: flex-start;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+          justify-content: flex-start;
+}
+.ambbb-image-grid--layout\:grid {
+  display: grid;
+  gap: var(--ambbb-image-grid-gap, 0);
+  grid-template-columns: repeat(var(--ambbb-image-grid-cols), 1fr);
+}
+.ambbb-image-grid__figure {
+  display: block;
+  margin: var(--ambbb-image-grid-margin);
+  width: var(--ambbb-image-grid-figure-width);
+}
+.ambbb-image-grid__image-area--proportion\:landscape, .ambbb-image-grid__image-area--proportion\:square, .ambbb-image-grid__image-area--proportion\:portrait {
+  position: relative;
+}
+.ambbb-image-grid__image-area--proportion\:landscape::before, .ambbb-image-grid__image-area--proportion\:square::before, .ambbb-image-grid__image-area--proportion\:portrait::before {
+  content: "";
+  display: block;
+}
+.ambbb-image-grid__image-area--proportion\:landscape img, .ambbb-image-grid__image-area--proportion\:square img, .ambbb-image-grid__image-area--proportion\:portrait img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.ambbb-image-grid__image-area--proportion\:landscape::before {
+  padding-top: calc( 100% * 2 / 3 );
+}
+.ambbb-image-grid__image-area--proportion\:square::before {
+  padding-top: calc( 100% * 1 / 1 );
+}
+.ambbb-image-grid__image-area--proportion\:portrait::before {
+  padding-top: calc( 100% * 3 / 2 );
+}
+.ambbb-image-grid__image {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+.ambbb-image-grid__image--object-fit\:contain {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.ambbb-image-grid__image--object-fit\:cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
