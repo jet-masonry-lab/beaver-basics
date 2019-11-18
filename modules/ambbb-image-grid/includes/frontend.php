@@ -12,9 +12,11 @@
         <div class="<?= $module->imgWrapClasses( $image_id ); ?>">
           <?= wp_get_attachment_image( $image_id, $settings->image_size, false, [ 'class' => $module->imgClasses( $image_id ) ] ); ?>
         </div>
-        <figcaption class="<?= $module->figcaptionClasses( $image_id ); ?>">
-          <?= wp_get_attachment_caption( $image_id ); ?>
-        </figcaption>
+        <?php if ( $module->isTrue( 'output_caption' ) ) : ?>
+          <figcaption class="<?= $module->figcaptionClasses( $image_id ); ?>">
+            <?= wp_get_attachment_caption( $image_id ); ?>
+          </figcaption>
+        <?php endif; ?>
       </figure>
     <?php endforeach; ?>
   <?php else : ?>

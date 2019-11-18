@@ -34,6 +34,11 @@ class ambbbFLBuilderModule extends FLBuilderModule
     return true;
   }
 
+  public function isTrue( $key )
+  {
+    return (bool) $this->settings->{$key};
+  }
+
   // return rel="noopener" if the target is blank
   protected function noopener( $target )
   {

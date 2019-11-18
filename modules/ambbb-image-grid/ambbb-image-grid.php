@@ -28,13 +28,23 @@ class ambbbImageGridModule extends ambbbFLBuilderModule
     );
   }
 
-  private function get_acf_images()
+  private function get_acf_images( $from = NULL )
   {
     return array_map(
       function( $image ) {
         return $image['ID'];
       },
-      get_field( $this->settings->acf_field_name )
+      get_field( $this->settings->acf_field_name, $from )
+    );
+  }
+
+  private function get_acf_post_images( $from = NULL )
+  {
+    return array_map(
+      function( $post ) {
+        return get_post_thumbnail_id( $post );
+      },
+      get_field( $this->settings->acf_field_name, $from )
     );
   }
 
@@ -50,6 +60,15 @@ class ambbbImageGridModule extends ambbbFLBuilderModule
         break;
       case 'acf_gallery':
         return $this->get_acf_images();
+        break;
+      case 'acf_gallery_option':
+        return $this->get_acf_images( 'option' );
+        break;
+      case 'acf_posts':
+        return $this->get_acf_post_images();
+        break;
+      case 'acf_posts_option':
+        return $this->get_acf_post_images( 'option' );
         break;
     }
     return [];
@@ -112,7 +131,10 @@ FLBuilder::register_module( 'ambbbImageGridModule', [
             'options' => [
               'selected' => __( 'Selected images', 'amb-beaver-basics' ),
               'post' => __( 'All images attached to a post', 'amb-beaver-basics' ),
-              'acf_gallery' => __( 'ACF Gallery', 'amb-beaver-basics' ),
+              'acf_gallery' => __( 'ACF Gallery (Post Field)', 'amb-beaver-basics' ),
+              'acf_gallery_option' => __( 'ACF Gallery (Option Field)', 'amb-beaver-basics' ),
+              'acf_posts' => __( 'ACF Relationship (Post Field)', 'amb-beaver-basics' ),
+              'acf_posts_option' => __( 'ACF Relationship (Option Field)', 'amb-beaver-basics' ),
             ],
             'toggle' => [
               'selected' => [
@@ -122,6 +144,15 @@ FLBuilder::register_module( 'ambbbImageGridModule', [
                 'fields' => [ 'post_id' ],
               ],
               'acf_gallery' => [
+                'fields' => [ 'acf_field_name' ],
+              ],
+              'acf_gallery_option' => [
+                'fields' => [ 'acf_field_name' ],
+              ],
+              'acf_posts' => [
+                'fields' => [ 'acf_field_name' ],
+              ],
+              'acf_posts_option' => [
                 'fields' => [ 'acf_field_name' ],
               ],
             ],
@@ -145,6 +176,25 @@ FLBuilder::register_module( 'ambbbImageGridModule', [
             'type' => 'photo-sizes',
             'label' => __( 'Image Size', 'amb-beaver-basics' ),
             'default' => 'medium'
+          ],
+        ],
+      ],
+    ],
+  ],
+  'structure' => [
+    'title' => __( 'Structure', 'amb-beaver-basics' ),
+    'sections' => [
+      'structure' => [
+        'title' => '',
+        'fields' => [
+          'output_caption' => [
+            'type' => 'button-group',
+            'label' => __( 'Output Caption?', 'amb-beaver-basics' ),
+            'default' => 0,
+            'options' => [
+              1 => __( 'Yes', 'amb-beaver-basics' ),
+              0 => __( 'No', 'amb-beaver-basics' ),
+            ],
           ],
         ],
       ],
