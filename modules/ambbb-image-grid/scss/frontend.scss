@@ -7,11 +7,12 @@
   --ambbb-image-grid-margin: 0;
   --ambbb-image-grid-figure-width: 100%;
 
+  margin: calc( -1 * var( --ambbb-image-grid-margin ) );
+
   &--layout {
-    margin: calc( -1 * var( --ambbb-image-grid-margin ) );
 
     &\:flexbox {
-      --ambbb-image-grid-margin: calc( var ( --ambbb-image-grid-gap ) / 2 );
+      --ambbb-image-grid-margin: calc( var( --ambbb-image-grid-gap ) / 2 );
       --ambbb-image-grid-figure-width: calc( 100% / var( --ambbb-image-grid-cols ) - var( --ambbb-image-grid-gap ) );
       align-items: flex-start;
       display: flex;
