@@ -5,6 +5,8 @@
  */
 class ambbbImageGridModule extends ambbbFLBuilderModule
 {
+  private $_images = NULL;
+
   public function __construct()
   {
     parent::__construct( [
@@ -17,61 +19,123 @@ class ambbbImageGridModule extends ambbbFLBuilderModule
     ] );
   }
 
-  private function get_post_images()
+  private function getSelectedImages()
+  {
+    return array_map(
+      function( $image_id ) {
+        return [
+          'id' => $image_id,
+          'caption' => wp_get_attachment_caption( $image_id ),
+        ];
+      },
+      $this->settings->images
+    );
+  }
+
+  private function getAttachedImages()
   {
     $post_id = $this->has( 'post_id' ) ? $this->settings->post_id : get_the_ID();
     return array_map(
       function( $image ) {
-        return $image->ID;
+        return [
+          'id' => $image->ID,
+          'caption' => wp_get_attachment_caption( $image->ID ),
+        ];
       },
       get_attached_media( 'image', $post_id )
     );
   }
 
-  private function get_acf_images( $from = NULL )
+  private function getACFImages( $from = NULL )
   {
     return array_map(
       function( $image ) {
-        return $image['ID'];
+        return [
+          'id' => $image['ID'],
+          'caption' => wp_get_attachment_caption( $image['ID'] ),
+        ];
       },
+      // TODO: handle different types of return values from ACF field ( Image Array, Image URL, Image ID )
+      // Or indicate in settings what return types will work
       get_field( $this->settings->acf_field_name, $from )
     );
   }
 
-  private function get_acf_post_images( $from = NULL )
+  private function getACFPostsImages( $from = NULL )
   {
+    // TODO: handle different types of return values from ACF field ( Post Object, Post ID )
+    // Or indicate in settings what return types will work
+    $posts = get_field( $this->settings->acf_field_name, $from );
     return array_map(
       function( $post ) {
-        return get_post_thumbnail_id( $post );
+        $image_id = $this->getACFPostImage( $post->ID )['ID'];
+        $image_caption = $this->getACFPostCaption( $post->ID, $image_id );
+        return [
+          'id' => $image_id,
+          'caption' => $image_caption,
+        ];
       },
-      get_field( $this->settings->acf_field_name, $from )
+      $posts
     );
+  }
+
+  private function getACFPostImage( $post_id )
+  {
+    switch ( $this->settings->acf_posts_image_type ) {
+      case 'featured':
+        return get_post_thumbnail_id( $post_id );
+        break;
+      case 'acf_field':
+        // TODO: handle different types of return values from ACF field ( Image Array, Image URL, Image ID )
+        // Or indicate in settings what return types will work
+        return get_field( $this->settings->acf_posts_image_field_name, $post_id );
+        break;
+    }
+  }
+
+  private function getACFPostCaption( $post_id, $image_id )
+  {
+    switch ( $this->settings->acf_posts_caption_type ) {
+      case 'post_title':
+        return get_the_title( $post_id );
+        break;
+      case 'media_caption':
+        return wp_get_attachment_caption( $image_id );
+        break;
+    }
   }
 
   // Return an array of image IDs
-  public function images()
+  public function getImages()
   {
-    switch ( $this->settings->source ) {
-      case 'selected':
-        return $this->settings->images;
-        break;
-      case 'post':
-        return $this->get_post_images();
-        break;
-      case 'acf_gallery':
-        return $this->get_acf_images();
-        break;
-      case 'acf_gallery_option':
-        return $this->get_acf_images( 'option' );
-        break;
-      case 'acf_posts':
-        return $this->get_acf_post_images();
-        break;
-      case 'acf_posts_option':
-        return $this->get_acf_post_images( 'option' );
-        break;
+    if ( is_null( $this->_images ) ) {
+      switch ( $this->settings->source ) {
+        case 'selected':
+          $this->_images = $this->getSelectedImages();
+          break;
+        case 'attached':
+          $this->_images = $this->getAttachedImages();
+          break;
+        case 'acf_gallery':
+          $this->_images = $this->getACFImages();
+          break;
+        case 'acf_gallery_option':
+          $this->_images = $this->getACFImages( 'option' );
+          break;
+        case 'acf_posts':
+          $this->_images = $this->getACFPostsImages();
+          break;
+        case 'acf_posts_option':
+          $this->_images = $this->getACFPostsImages( 'option' );
+          break;
+      }
     }
-    return [];
+    return $this->_images;
+  }
+
+  public function hasImages()
+  {
+    return !empty( $this->getImages() );
   }
 
   // TODO: build classes with BEM functions
@@ -126,11 +190,11 @@ FLBuilder::register_module( 'ambbbImageGridModule', [
         'fields' => [
           'source' => [
             'type' => 'select',
-            'label' => __( 'Which Images', 'amb-beaver-basics' ),
+            'label' => __( 'Which images?', 'amb-beaver-basics' ),
             'default' => 'selected',
             'options' => [
               'selected' => __( 'Selected images', 'amb-beaver-basics' ),
-              'post' => __( 'All images attached to a post', 'amb-beaver-basics' ),
+              'attached' => __( 'Images attached to a post', 'amb-beaver-basics' ),
               'acf_gallery' => __( 'ACF Gallery (Post Field)', 'amb-beaver-basics' ),
               'acf_gallery_option' => __( 'ACF Gallery (Option Field)', 'amb-beaver-basics' ),
               'acf_posts' => __( 'ACF Relationship (Post Field)', 'amb-beaver-basics' ),
@@ -150,9 +214,11 @@ FLBuilder::register_module( 'ambbbImageGridModule', [
                 'fields' => [ 'acf_field_name' ],
               ],
               'acf_posts' => [
+                'sections' => [ 'acf_posts' ],
                 'fields' => [ 'acf_field_name' ],
               ],
               'acf_posts_option' => [
+                'sections' => [ 'acf_posts' ],
                 'fields' => [ 'acf_field_name' ],
               ],
             ],
@@ -176,6 +242,42 @@ FLBuilder::register_module( 'ambbbImageGridModule', [
             'type' => 'photo-sizes',
             'label' => __( 'Image Size', 'amb-beaver-basics' ),
             'default' => 'medium'
+          ],
+        ],
+      ],
+      'acf_posts' => [
+        'title' => __( 'ACF Posts', 'amb-beaver-basics' ),
+        'fields' => [
+          'acf_posts_image_type' => [
+            'type' => 'button-group',
+            'label' => __( 'What type of post image?', 'amb-beaver-basics' ),
+            'default' => 'featured',
+            'options' => [
+              'featured' => __( 'Featured', 'amb-beaver-basics' ),
+              'acf_field' => __( 'ACF Field', 'amb-beaver-basics' ),
+            ],
+            'toggle' => [
+              'featured' => [
+                'fields' => [],
+              ],
+              'acf_field' => [
+                'fields' => [ 'acf_posts_image_field_name' ],
+              ],
+            ],
+          ],
+          'acf_posts_image_field_name' => [
+            'type' => 'text',
+            'label' => __( 'ACF Image Field Name', 'amb-beaver-basics' ),
+            'connections' => [ 'text' ],
+          ],
+          'acf_posts_caption_type' => [
+            'type' => 'button-group',
+            'label' => __( 'What type of caption?', 'amb-beaver-basics' ),
+            'default' => 'post_title',
+            'options' => [
+              'post_title' => __( 'Post Title', 'amb-beaver-basics' ),
+              'media_caption' => __( 'Media Caption', 'amb-beaver-basics' ),
+            ],
           ],
         ],
       ],

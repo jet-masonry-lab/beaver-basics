@@ -12,6 +12,8 @@
  * Text Domain: amb-beaver-basics
  */
 
+include_once( 'wordpress/wordpress.kses-allowed-html.php' );
+
 function ambbb__init()
 {
   if ( class_exists( 'FLBuilder' ) ) {
