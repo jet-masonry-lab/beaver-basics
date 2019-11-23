@@ -9,6 +9,7 @@ module.exports = (env, argv) => {
 
   return {
     entry: {
+      'dist/settings.layout': './src/scss/settings.layout.scss',
       'modules/ambbb-image-grid/css/frontend': './modules/ambbb-image-grid/scss/frontend.scss'
     },
     output: {

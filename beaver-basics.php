@@ -14,7 +14,25 @@
 
 include_once( 'wordpress/wordpress.kses-allowed-html.php' );
 
-function ambbb__init()
+if ( class_exists( 'FLBuilder' ) ) {
+
+  // Register Styles + Scripts
+  add_action( 'wp_enqueue_scripts', 'ambbb__register_styles_scripts' );
+
+  // Settings
+  include_once( 'settings/settings.layout.php');
+
+}
+
+
+function ambbb__register_styles_scripts()
+{
+  wp_register_style( 'ambbb-col-flexbox', plugins_url( '/dist/settings.layout.css', __FILE__ ), [], plugins_url( '/dist/settings.layout.css', __FILE__ ) );
+  wp_enqueue_style( 'ambbb-col-flexbox' );
+}
+
+
+function ambbb__init_modules()
 {
   if ( class_exists( 'FLBuilder' ) ) {
 
@@ -41,4 +59,4 @@ function ambbb__init()
 
   }
 }
-add_action( 'init', 'ambbb__init', 9999 ); // register with late priority to improve chances that other customizations are complete (e.g. custom post types registered)
+add_action( 'init', 'ambbb__init_modules', 9999 ); // register with late priority to improve chances that other customizations are complete (e.g. custom post types registered)
