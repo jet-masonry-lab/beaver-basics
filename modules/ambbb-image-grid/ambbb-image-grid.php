@@ -111,8 +111,6 @@ class ambbbImageGridModule extends ambbbFLBuilderModule
   private function getACFPostCaption( $post_id, $image_id )
   {
     switch ( $this->settings->acf_posts_caption_type ) {
-      case 'none':
-        return FALSE;
       case 'post_title':
         return get_the_title( $post_id );
         break;
@@ -260,6 +258,15 @@ FLBuilder::register_module( 'ambbbImageGridModule', [
             'label' => __( 'Image Size', 'amb-beaver-basics' ),
             'default' => 'medium'
           ],
+          'output_caption' => [
+            'type' => 'button-group',
+            'label' => __( 'Output Caption?', 'amb-beaver-basics' ),
+            'default' => 0,
+            'options' => [
+              1 => __( 'Yes', 'amb-beaver-basics' ),
+              0 => __( 'No', 'amb-beaver-basics' ),
+            ],
+          ],
         ],
       ],
       'acf_posts' => [
@@ -292,28 +299,8 @@ FLBuilder::register_module( 'ambbbImageGridModule', [
             'label' => __( 'What type of caption?', 'amb-beaver-basics' ),
             'default' => 'post_title',
             'options' => [
-              'none' => __( 'None', 'amb-beaver-basics' ),
               'post_title' => __( 'Post Title', 'amb-beaver-basics' ),
               'media_caption' => __( 'Media Caption', 'amb-beaver-basics' ),
-            ],
-          ],
-        ],
-      ],
-    ],
-  ],
-  'structure' => [
-    'title' => __( 'Structure', 'amb-beaver-basics' ),
-    'sections' => [
-      'structure' => [
-        'title' => '',
-        'fields' => [
-          'output_caption' => [
-            'type' => 'button-group',
-            'label' => __( 'Output Caption?', 'amb-beaver-basics' ),
-            'default' => 0,
-            'options' => [
-              1 => __( 'Yes', 'amb-beaver-basics' ),
-              0 => __( 'No', 'amb-beaver-basics' ),
             ],
           ],
         ],
