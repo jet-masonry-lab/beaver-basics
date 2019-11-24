@@ -3,7 +3,7 @@
 /**
  * @class ambbbHeadingModule
  */
-class ambbbHeadingModule extends FLBuilderModule
+class ambbbHeadingModule extends ambbbFLBuilderModule
 {
   public function __construct()
   {
@@ -16,6 +16,12 @@ class ambbbHeadingModule extends FLBuilderModule
       'url'         => plugins_url( '/', __FILE__ )
     ] );
   }
+
+  public function headingClasses()
+  {
+    return $this->classesString( ['heading'] );
+  }
+
 }
 
 // Register the module
