@@ -3,7 +3,7 @@
 /**
  * @class ambbbQuoteModule
  */
-class ambbbQuoteModule extends FLBuilderModule
+class ambbbQuoteModule extends ambbbFLBuilderModule
 {
   public function __construct()
   {
@@ -15,6 +15,36 @@ class ambbbQuoteModule extends FLBuilderModule
       'dir'         => plugin_dir_path( __FILE__ ),
       'url'         => plugins_url( '/', __FILE__ )
     ] );
+  }
+
+  public function quoteClasses()
+  {
+    return $this->classesString( [ 'quote' ] );
+  }
+
+  public function bodyClasses()
+  {
+    return $this->classesString( [ 'quote__body' ] );
+  }
+
+  public function attributionClasses()
+  {
+    return $this->classesString( [ 'quote__attribution' ] );
+  }
+
+  public function citeAttribute()
+  {
+    return empty( $settings->cite ) ? '' : sprintf( 'cite="%s"', esc_url( $settings->cite ) );
+  }
+
+  public function linkOpen()
+  {
+    return empty( $settings->cite ) ? '' : sprintf( '<a href="%s">', esc_url( $settings->cite ) );
+  }
+
+  public function linkClose()
+  {
+    return empty( $settings->cite ) ? '' : '</a>';
   }
 }
 
@@ -33,7 +63,7 @@ FLBuilder::register_module( 'ambbbQuoteModule', [
             'rows' => '6',
             'preview' => [
               'type' => 'text',
-              'selector' => '.c-quote__body',
+              'selector' => '.ambbb-quote__body',
             ],
             'connections' => [ 'html' ],
           ],
@@ -43,7 +73,7 @@ FLBuilder::register_module( 'ambbbQuoteModule', [
             'default' => '',
             'preview' => [
               'type' => 'text',
-              'selector' => '.c-quote__attribution',
+              'selector' => '.ambbb-quote__attribution',
             ],
             'connections' => [ 'string' ],
           ],
