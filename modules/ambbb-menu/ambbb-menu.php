@@ -11,7 +11,7 @@ class ambbbMenuModule extends FLBuilderModule
       'name'        => __( 'Menu', 'amb-beaver-basics' ),
       'description' => __( 'WordPress built-in nav menu from function `wp_nav_menu()`.', 'amb-beaver-basics' ),
       'group'       => __( 'Beaver Basics', 'amb-beaver-basics' ),
-      'category'    => __( 'Basic', 'amb-beaver-basics' ),
+      'category'    => __( 'Input', 'amb-beaver-basics' ),
       'dir'         => plugin_dir_path( __FILE__ ),
       'url'         => plugins_url( '/', __FILE__ )
     ] );
