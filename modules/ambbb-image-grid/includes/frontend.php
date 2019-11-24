@@ -5,7 +5,7 @@
 // - $settings
 ?>
 
-<div class="<?= esc_attr( $module->mainClasses() ); ?>">
+<div class="<?= esc_attr( $module->gridClasses() ); ?>">
   <?php if ( $module->hasImages() ) : ?>
     <?php foreach ( $module->getImages() as $image ) : ?>
       <figure class="<?= esc_attr( $module->figureClasses( $image['id'] ) ); ?>">
@@ -14,7 +14,7 @@
         </div>
         <?php if ( $module->isTrue( 'output_caption' ) ) : ?>
           <figcaption class="<?= esc_attr( $module->figcaptionClasses( $image['id'] ) ); ?>">
-            <?= wp_kses( $image['caption'], ambbb__allowed_html__inline() ); ?>
+            <?= $module->escInlineHtml( $image['caption'] ); ?>
           </figcaption>
         <?php endif; ?>
       </figure>

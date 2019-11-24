@@ -39,6 +39,11 @@ class ambbbFLBuilderModule extends FLBuilderModule
     return (bool) $this->settings->{$key};
   }
 
+  public function escInlineHtml( $string )
+  {
+    return wp_kses( $string, ambbb__allowed_html__inline() );
+  }
+
   // return rel="noopener" if the target is blank
   protected function noopener( $target )
   {

@@ -1,0 +1,38 @@
+// Global CSS for this module type
+
+.fl-module-ambbb-image {
+  &--has-image-fit {
+    align-items: stretch;
+    display: flex;
+
+    .fl-module-content,
+    .ambbb-image,
+    .ambbb-image__image-area {
+      align-items: stretch;
+      display: flex;
+      flex-grow: 1;
+    }
+  }
+}
+
+.ambbb-image {
+
+  margin: 0; // remove margins from figure
+
+  &__image {
+
+    &--object-fit{
+
+      &\:contain {
+        object-fit: contain;
+      }
+
+      &\:cover {
+        object-fit: cover;
+      }
+
+    }
+
+  }
+
+}

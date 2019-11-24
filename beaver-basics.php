@@ -49,6 +49,7 @@ function ambbb__init_modules()
     include_once( 'modules/ambbb-csv-to-table/ambbb-csv-to-table.php');
     include_once( 'modules/ambbb-gallery/ambbb-gallery.php');
     include_once( 'modules/ambbb-heading/ambbb-heading.php');
+    include_once( 'modules/ambbb-image/ambbb-image.php');
     include_once( 'modules/ambbb-image-grid/ambbb-image-grid.php');
     include_once( 'modules/ambbb-intro/ambbb-intro.php');
     include_once( 'modules/ambbb-menu/ambbb-menu.php');

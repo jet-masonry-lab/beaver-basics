@@ -13,7 +13,7 @@
         && !empty( $button->link_text )
       ) : ?>
         <a href="<?= esc_attr( $button->link_url ); ?>" target="<?= esc_attr( $button->link_url_target ); ?>" class="o-button <?= esc_attr( $module->variation_classes( 'o-button', $button ) ); ?>">
-          <?= wp_kses_post( $button->link_text ); ?>
+          <?= $module->escInlineHtml( $button->link_text ); ?>
         </a>
       <?php endif;  ?>
     <?php endforeach; ?>
