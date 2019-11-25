@@ -3,7 +3,7 @@
 /**
  * @class ambbbMenuModule
  */
-class ambbbMenuModule extends FLBuilderModule
+class ambbbMenuModule extends ambbbFLBuilderModule
 {
   public function __construct()
   {

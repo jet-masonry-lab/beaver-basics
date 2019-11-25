@@ -3,7 +3,7 @@
 /**
  * @class ambbbSearchFormModule
  */
-class ambbbSearchFormModule extends FLBuilderModule
+class ambbbSearchFormModule extends ambbbFLBuilderModule
 {
   public function __construct()
   {
