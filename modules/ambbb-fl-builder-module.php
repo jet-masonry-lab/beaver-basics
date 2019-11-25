@@ -45,7 +45,7 @@ class ambbbFLBuilderModule extends FLBuilderModule
   }
 
   // return rel="noopener" if the target is blank
-  protected function noopener( $target )
+  public function noopener( $target )
   {
     return '_blank' == $target ? 'rel="noopener"' : '';
   }

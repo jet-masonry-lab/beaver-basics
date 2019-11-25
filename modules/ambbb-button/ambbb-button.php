@@ -3,7 +3,7 @@
 /**
  * @class ambbbButtonModule
  */
-class ambbbButtonModule extends FLBuilderModule
+class ambbbButtonModule extends ambbbFLBuilderModule
 {
   public function __construct()
   {
@@ -15,6 +15,16 @@ class ambbbButtonModule extends FLBuilderModule
       'dir'         => plugin_dir_path( __FILE__ ),
       'url'         => plugins_url( '/', __FILE__ )
     ] );
+  }
+
+  public function buttonClasses()
+  {
+    return $this->classesString( ['button'] );
+  }
+
+  public function textClasses()
+  {
+    return $this->classesString( ['button__text'] );
   }
 }
 
