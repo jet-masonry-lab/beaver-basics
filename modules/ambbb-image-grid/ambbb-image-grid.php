@@ -188,6 +188,26 @@ class ambbbImageGridModule extends ambbbFLBuilderModule
     return $this->classesString( $classes );
   }
 
+  public function imgIsLinked( $image_id )
+  {
+    switch ( $this->settings->link_type ) {
+      case 'acf_field':
+        return (
+          $this->has( 'link_acf_field_name' )
+          && !empty( $this->imgLinkHref( $image_id ) )
+        );
+        break;
+      default:
+        return false;
+        break;
+    }
+  }
+
+  public function imgLinkHref( $image_id )
+  {
+    return get_field( $this->settings->link_acf_field_name, $image_id );
+  }
+
   public function figcaptionClasses( $image_id )
   {
     return $this->classesString( [ 'image-grid__caption' ] );
@@ -257,6 +277,25 @@ FLBuilder::register_module( 'ambbbImageGridModule', [
             'type' => 'photo-sizes',
             'label' => __( 'Image Size', 'amb-beaver-basics' ),
             'default' => 'medium'
+          ],
+          'link_type' => [
+            'type' => 'select',
+            'label' => __( 'Link Images', 'amb-beaver-basics' ),
+            'default' => 'selected',
+            'options' => [
+              '' => __( 'None', 'amb-beaver-basics' ),
+              'acf_field' => __( 'ACF Field', 'amb-beaver-basics' ),
+            ],
+            'toggle' => [
+              'acf_field' => [
+                'fields' => [ 'link_acf_field_name' ],
+              ],
+            ],
+          ],
+          'link_acf_field_name' => [
+            'type' => 'text',
+            'label' => __( 'Link ACF Field Name', 'amb-beaver-basics' ),
+            'connections' => [ 'text' ],
           ],
           'output_caption' => [
             'type' => 'button-group',
