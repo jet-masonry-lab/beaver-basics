@@ -21,6 +21,7 @@ if ( class_exists( 'FLBuilder' ) ) {
 
   // Settings
   include_once( 'settings/settings.layout.php');
+  include_once( 'settings/settings.variations.php');
 
 }
 
