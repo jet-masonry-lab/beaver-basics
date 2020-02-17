@@ -198,22 +198,34 @@ class ambbbFlexSettings
 
   public static function add_flex_settings( $form, $id )
   {
-    switch ( $id ) {
-      case 'row':
+    // Modules don't have 'tabs' defined at the top level
+    // The only forms we want to filter that DO have 'tabs'
+    // Are the row and col forms...
+
+    if (
+      isset( $form['tabs'] )
+    ) {
+      // for rows and cols (and other misc forms), 'tabs' is a sub-array
+      if ( 'row' === $id ) {
         $form['tabs'] = self::add_flex_settings_tab( $form['tabs'] );
         $form['tabs'] = self::add_flex_container_settings( $form['tabs'] );
-        break;
-      case 'col':
+      } else if ( 'col' === $id ) {
         $form['tabs'] = self::add_flex_settings_tab( $form['tabs'] );
         $form['tabs'] = self::add_flex_item_settings( $form['tabs'] );
         $form['tabs'] = self::add_flex_container_settings( $form['tabs'] );
-        break;
-      default:
-        $form = self::add_flex_settings_tab( $form );
-        $form = self::add_flex_item_settings( $form );
-        $form = self::add_flex_container_settings( $form );
-        break;
+      }
+
+    } else if (
+      !isset( $form['tabs'] )
+      && 'module_advanced' !== $id
+    ) {
+      // for modules, the whole array is 'tabs'
+      $form = self::add_flex_settings_tab( $form );
+      $form = self::add_flex_item_settings( $form );
+      $form = self::add_flex_container_settings( $form );
+
     }
+
     return $form;
   }
 

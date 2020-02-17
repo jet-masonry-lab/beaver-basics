@@ -39,7 +39,7 @@ class ambbbVariationSettings
       isset( $form['tabs'] )
       && in_array( $id, [ 'row', 'col'] )
     ) {
-      // for rows and cols, 'tabs' is a sub-array
+      // for rows and cols (and other misc forms), 'tabs' is a sub-array
       $first_tab_key = array_keys( $form['tabs'] )[0];
       self::add_variations_section( $form['tabs'][$first_tab_key]['sections'], $id );
 
