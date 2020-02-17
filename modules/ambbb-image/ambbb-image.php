@@ -11,7 +11,7 @@ class ambbbImageModule extends ambbbFLBuilderModule
       'name'        => __( 'Image', 'amb-beaver-basics' ),
       'description' => __( 'A simple image with minimal styling.', 'amb-beaver-basics' ),
       'group'       => __( 'Beaver Basics', 'amb-beaver-basics' ),
-      'category'    => __( 'Media', 'amb-beaver-basics' ),
+      'category'    => __( 'BB - Media', 'amb-beaver-basics' ),
       'dir'         => plugin_dir_path( __FILE__ ),
       'url'         => plugins_url( '/', __FILE__ )
     ] );

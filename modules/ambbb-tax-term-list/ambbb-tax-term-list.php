@@ -11,7 +11,7 @@ class ambbbTaxTermListModule extends FLBuilderModule
       'name'        => __( 'Tax Term List', 'amb-beaver-basics' ),
       'description' => __( 'Linked list of all terms in a taxonomy.', 'amb-beaver-basics' ),
       'group'       => __( 'Beaver Basics', 'amb-beaver-basics' ),
-      'category'    => __( 'Basic', 'amb-beaver-basics' ),
+      'category'    => __( 'BB - Basic', 'amb-beaver-basics' ),
       'dir'         => plugin_dir_path( __FILE__ ),
       'url'         => plugins_url( '/', __FILE__ )
     ] );

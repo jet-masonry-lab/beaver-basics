@@ -11,7 +11,7 @@ class ambbbButtonModule extends ambbbFLBuilderModule
       'name'        => __( 'Button', 'amb-beaver-basics' ),
       'description' => __( 'A simple button, no style options.', 'amb-beaver-basics' ),
       'group'       => __( 'Beaver Basics', 'amb-beaver-basics' ),
-      'category'    => __( 'Input', 'amb-beaver-basics' ),
+      'category'    => __( 'BB - Input', 'amb-beaver-basics' ),
       'dir'         => plugin_dir_path( __FILE__ ),
       'url'         => plugins_url( '/', __FILE__ )
     ] );
