@@ -3,6 +3,9 @@
 // Extend Builder Model Class
 class ambbbFLBuilderModule extends FLBuilderModule
 {
+  protected $_bem_prefix = 'ambbb';
+  protected $_bem_base = 'module';
+
   public function __construct( $params )
   {
     parent::__construct( $params );
@@ -50,7 +53,26 @@ class ambbbFLBuilderModule extends FLBuilderModule
     return '_blank' == $target ? 'rel="noopener"' : '';
   }
 
-  protected function classesString( array $chunks )
+  private function mayAppend( $base = '', $separator = '', $append = NULL )
+  {
+    if ( !empty( $append ) ) {
+      $base .= $separator . $append;
+    }
+    return $base;
+  }
+
+  public function bemClass( $element = NULL, $modifier = NULL )
+  {
+    $class = $this->mayAppend( $this->_bem_prefix, '-', $this->_bem_base );
+    if ( is_array( $element ) ) {
+      $element = implode( '__', $element );
+    }
+    $class = $this->mayAppend( $class, '__', $element );
+    $class = $this->mayAppend( $class, '--', $modifier );
+    return $class;
+  }
+
+  public function classesString( array $chunks )
   {
     return implode(
       ' ',
