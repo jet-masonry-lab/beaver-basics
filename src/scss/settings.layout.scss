@@ -9,11 +9,17 @@
     align-items:  var( --ambbb-fl-row__align-items, stretch );
     flex-direction:  var( --ambbb-fl-row__flex-direction, row );
     justify-content:  var( --ambbb-fl-row__justify-content, flex-start );
+
+    // take pseudo-elements out of the equation
+    // they're used by the builder for float clearing
+    &::before,
+    &::after {
+      display: none;
+    }
   }
 
   .fl-col {
-    align-items: stretch;
-    display: flex;
+    width: initial; // override width specified in builder
   }
 
   .fl-col-content {
