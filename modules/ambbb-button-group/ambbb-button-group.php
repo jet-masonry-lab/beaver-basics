@@ -1,6 +1,6 @@
 <?php
 
-class ambbbButtonGroupModule extends FLBuilderModule
+class ambbbButtonGroupModule extends ambbbFLBuilderModule
 {
   public function __construct()
   {

@@ -3,7 +3,7 @@
 /**
  * @class TaxTermListModule
  */
-class ambbbTaxTermListModule extends FLBuilderModule
+class ambbbTaxTermListModule extends ambbbFLBuilderModule
 {
   public function __construct()
   {

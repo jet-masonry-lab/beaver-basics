@@ -3,7 +3,7 @@
 /**
  * @class ambbbButtonModule
  */
-class ambbbAcfFrontendFormModule extends FLBuilderModule
+class ambbbAcfFrontendFormModule extends ambbbFLBuilderModule
 {
   public function __construct()
   {

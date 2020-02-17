@@ -3,7 +3,7 @@
 /**
  * @class ambbbGalleryModule
  */
-class ambbbGalleryModule extends FLBuilderModule
+class ambbbGalleryModule extends ambbbFLBuilderModule
 {
   public function __construct()
   {
