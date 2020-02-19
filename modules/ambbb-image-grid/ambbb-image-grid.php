@@ -17,6 +17,10 @@ class ambbbImageGridModule extends ambbbFLBuilderModule
       'dir'         => plugin_dir_path( __FILE__ ),
       'url'         => plugins_url( '/', __FILE__ )
     ] );
+
+    add_filter( 'ambbb__image-grid__base_classes', [__CLASS__, 'addBaseClasses'], 10, 3 );
+    add_filter( 'ambbb__image-grid__image-area_classes', [__CLASS__, 'addImageAreaClasses'], 10, 3 );
+    add_filter( 'ambbb__image-grid__image_classes', [__CLASS__, 'addImageClasses'], 10, 3 );
   }
 
   private function getSelectedImages()
@@ -153,39 +157,28 @@ class ambbbImageGridModule extends ambbbFLBuilderModule
     return !empty( $this->getImages() );
   }
 
-  // TODO: build classes with BEM functions
-  // ... base / element / modifier
-
-  public function gridClasses()
+  public static function addBaseClasses( $classes, $module )
   {
-    $classes = [ 'image-grid' ];
-    if ( $this->has( 'layout' ) ) {
-      $classes[] = 'image-grid--layout:' . $this->settings->layout;
+    if ( $module->has( 'layout' ) ) {
+      $classes[] = $module->bemClass( NULL, 'layout:' . $module->settings->layout );
     }
-    return $this->classesString( $classes );
+    return $classes;
   }
 
-  public function figureClasses( $image_id )
+  public static function addImageAreaClasses( $classes, $module, $image )
   {
-    return $this->classesString( [ 'image-grid__figure' ] );
+    if ( $module->has( 'image_proportion' ) ) {
+      $classes[] = $module->bemClass( 'image-area', 'proportion:' . $module->settings->image_proportion );
+    }
+    return $classes;
   }
 
-  public function imgWrapClasses( $image_id )
+  public static function addImageClasses( $classes, $module, $image )
   {
-    $classes = [ 'image-grid__image-area' ];
-    if ( $this->has( 'image_proportion' ) ) {
-      $classes[] = 'image-grid__image-area--proportion:' . $this->settings->image_proportion;
+    if ( $module->has( 'image_fit' ) ) {
+      $classes[] = $module->bemClass( 'image', 'object-fit:' . $module->settings->image_fit );
     }
-    return $this->classesString( $classes );
-  }
-
-  public function imgClasses( $image_id )
-  {
-    $classes = [ 'image-grid__image' ];
-    if ( $this->has( 'image_fit' ) ) {
-      $classes[] = 'image-grid__image--object-fit:' . $this->settings->image_fit;
-    }
-    return $this->classesString( $classes );
+    return $classes;
   }
 
   public function imgIsLinked( $image_id )
@@ -206,11 +199,6 @@ class ambbbImageGridModule extends ambbbFLBuilderModule
   public function imgLinkHref( $image_id )
   {
     return get_field( $this->settings->link_acf_field_name, $image_id );
-  }
-
-  public function figcaptionClasses( $image_id )
-  {
-    return $this->classesString( [ 'image-grid__caption' ] );
   }
 
 }

@@ -15,7 +15,9 @@ class ambbbImageModule extends ambbbFLBuilderModule
       'dir'         => plugin_dir_path( __FILE__ ),
       'url'         => plugins_url( '/', __FILE__ )
     ] );
+
     add_filter( 'fl_builder_module_attributes', [__CLASS__, 'addModuleClasses'], 10, 2 );
+    add_filter( 'ambbb__image__image_classes', [__CLASS__, 'addImageClasses'], 10, 2 );
   }
 
   public static function addModuleClasses( $attrs, $module )
@@ -29,31 +31,16 @@ class ambbbImageModule extends ambbbFLBuilderModule
     return $attrs;
   }
 
-  public function figureClasses()
+  public static function addImageClasses( $classes, $module )
   {
-    return $this->classesString( ['image'] );
-  }
-
-  public function imgWrapClasses()
-  {
-    return $this->classesString( [ 'image__image-area' ] );
-  }
-
-  public function imgClasses()
-  {
-    $classes = [ 'image__image' ];
-    if ( $this->has( 'image_fit' ) ) {
-      $classes[] = 'image__image--object-fit:' . $this->settings->image_fit;
+    if ( $module->has( 'image_fit' ) ) {
+      $classes[] = $module->bemClass( 'image', 'object-fit:' . $module->settings->image_fit );
     }
-    return $this->classesString( $classes );
-  }
-
-  public function figcaptionClasses()
-  {
-    return $this->classesString( [ 'image__caption' ] );
+    return $classes;
   }
 
 }
+
 
 // Register the module
 FLBuilder::register_module( 'ambbbImageModule', [

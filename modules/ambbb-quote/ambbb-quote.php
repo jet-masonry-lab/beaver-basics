@@ -17,21 +17,6 @@ class ambbbQuoteModule extends ambbbFLBuilderModule
     ] );
   }
 
-  public function quoteClasses()
-  {
-    return $this->classesString( [ 'quote' ] );
-  }
-
-  public function bodyClasses()
-  {
-    return $this->classesString( [ 'quote__body' ] );
-  }
-
-  public function attributionClasses()
-  {
-    return $this->classesString( [ 'quote__attribution' ] );
-  }
-
   public function citeAttribute()
   {
     return empty( $settings->cite ) ? '' : sprintf( 'cite="%s"', esc_url( $settings->cite ) );

@@ -6,13 +6,13 @@
 ?>
 
 <?php if ( !empty( $settings->buttons ) ) : ?>
-  <div class="o-button-group">
+  <div class="<?= esc_attr( $module->classes() ); ?>">
     <?php foreach( $settings->buttons as $button ) : ?>
       <?php  if (
         !empty( $button->link_url )
         && !empty( $button->link_text )
       ) : ?>
-        <a href="<?= esc_attr( $button->link_url ); ?>" target="<?= esc_attr( $button->link_url_target ); ?>" class="o-button <?= esc_attr( $module->variation_classes( 'o-button', $button ) ); ?>">
+        <a href="<?= esc_attr( $button->link_url ); ?>" target="<?= esc_attr( $button->link_url_target ); ?>" class="<?= esc_attr( $module->classes( 'button', $button ) ); ?>">
           <?= $module->escInlineHtml( $button->link_text ); ?>
         </a>
       <?php endif;  ?>

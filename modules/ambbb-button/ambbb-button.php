@@ -16,16 +16,6 @@ class ambbbButtonModule extends ambbbFLBuilderModule
       'url'         => plugins_url( '/', __FILE__ )
     ] );
   }
-
-  public function buttonClasses()
-  {
-    return $this->classesString( ['button'] );
-  }
-
-  public function textClasses()
-  {
-    return $this->classesString( ['button__text'] );
-  }
 }
 
 // Register the module

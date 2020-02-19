@@ -16,12 +16,6 @@ class ambbbHeadingModule extends ambbbFLBuilderModule
       'url'         => plugins_url( '/', __FILE__ )
     ] );
   }
-
-  public function headingClasses()
-  {
-    return $this->classesString( ['heading'] );
-  }
-
 }
 
 // Register the module

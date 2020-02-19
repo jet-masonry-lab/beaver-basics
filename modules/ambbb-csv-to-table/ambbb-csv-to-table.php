@@ -1,6 +1,6 @@
 <?php
 
-class ambbbCSVToTableModule extends FLBuilderModule
+class ambbbCSVToTableModule extends ambbbFLBuilderModule
 {
   private $_row_count;
   private $_row_class; // resets for each row

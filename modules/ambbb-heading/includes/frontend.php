@@ -10,5 +10,5 @@ echo sprintf(
   $heading_format,
   $tag = $settings->tag,
   $content = $module->escInlineHtml( $settings->content ),
-  $class = esc_attr( $module->headingClasses() )
+  $class = esc_attr( $module->classes() )
 );

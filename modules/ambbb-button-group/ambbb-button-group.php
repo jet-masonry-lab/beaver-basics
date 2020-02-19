@@ -12,19 +12,23 @@ class ambbbButtonGroupModule extends ambbbFLBuilderModule
       'dir'         => plugin_dir_path( __FILE__ ),
       'url'         => plugins_url( '/', __FILE__ )
     ] );
+
+    add_filter( 'ambbb__button-group__button_classes', [__CLASS__, 'addButtonClasses'], 10, 3 );
   }
 
-  public function variation_classes( $base, $object )
+  public static function addButtonClasses( $classes, $module, $button )
   {
-    $variation_classes = [];
-    if ( !empty( $object->variations ) ) {
-      foreach( $object->variations as $variation ) {
+    if ( !empty( $button->style ) ) {
+      $classes[] = $module->bemClass( 'button', $button->style );
+    }
+    if ( !empty( $button->variations ) ) {
+      foreach( $button->variations as $variation ) {
         if ( !empty( $variation ) ) {
-          $variation_classes[] = "$base--$variation";
+          $classes[] = $module->bemClass( 'button', $variation );
         }
       }
     }
-    return implode( ' ', $variation_classes );
+    return $classes;
   }
 }
 

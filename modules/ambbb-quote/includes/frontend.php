@@ -5,14 +5,14 @@
 // - $settings
 ?>
 
-<figure class="<?= esc_attr( $module->quoteClasses() ); ?>">
+<figure class="<?= esc_attr( $module->classes() ); ?>">
   <blockquote
-    class="<?= esc_attr( $module->bodyClasses() ); ?>"
+    class="<?= esc_attr( $module->classes( 'body' ) ); ?>"
     <?= $module->citeAttribute(); ?>
   >
     <?= $module->escInlineHtml( $settings->quote ); ?>
   </blockquote>
-  <figcaption class="<?= esc_attr( $module->attributionClasses() ); ?>">
+  <figcaption class="<?= esc_attr( $module->classes( 'attribution' ) ); ?>">
     <?= $module->linkOpen(); ?>
       <?= $module->escInlineHtml( $settings->attribution ); ?>
     <?= $module->linkClose(); ?>

@@ -15,9 +15,11 @@ class ambbbTaxTermListModule extends ambbbFLBuilderModule
       'dir'         => plugin_dir_path( __FILE__ ),
       'url'         => plugins_url( '/', __FILE__ )
     ] );
+
+    add_filter( 'ambbb__tax-term-list__item_classes', [__CLASS__, 'addItemClasses'], 10, 3 );
   }
 
-  public static function get_public_taxonomies()
+  public static function getPublicTaxonomies()
   {
     return array_map(
       function( $tax ) {
@@ -31,7 +33,17 @@ class ambbbTaxTermListModule extends ambbbFLBuilderModule
       )
     );
   }
+
+  public static function addItemClasses( $classes, $module, $term )
+  {
+    $classes[] = $module->bemClass( 'term', $term->slug );
+    if ( $module->settings->link ) {
+      $classes[] = $module->bemClass( 'term', 'linked' );
+    }
+    return $classes;
+  }
 }
+
 
 // For list of possible arguments to include in settings, see:
 // https://developer.wordpress.org/reference/classes/wp_term_query/__construct/
@@ -47,7 +59,7 @@ FLBuilder::register_module( 'ambbbTaxTermListModule', [
           'taxonomy' => [
             'type' => 'select',
             'label' => __( 'Taxonomy', 'amb-beaver-basics' ),
-            'options' => ambbbTaxTermListModule::get_public_taxonomies()
+            'options' => ambbbTaxTermListModule::getPublicTaxonomies()
           ],
           'hide_empty' => [
             'type' => 'select',

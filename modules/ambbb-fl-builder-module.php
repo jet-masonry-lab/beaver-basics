@@ -3,9 +3,6 @@
 // Extend Builder Model Class
 class ambbbFLBuilderModule extends FLBuilderModule
 {
-  protected $_bem_prefix = 'ambbb';
-  protected $_bem_base = 'module';
-
   public function __construct( $params )
   {
     parent::__construct( $params );
@@ -61,9 +58,14 @@ class ambbbFLBuilderModule extends FLBuilderModule
     return $base;
   }
 
+  public function bemBase()
+  {
+    return $this->slug;
+  }
+
   public function bemClass( $element = NULL, $modifier = NULL )
   {
-    $class = $this->mayAppend( $this->_bem_prefix, '-', $this->_bem_base );
+    $class = $this->bemBase();
     if ( is_array( $element ) ) {
       $element = implode( '__', $element );
     }
@@ -72,11 +74,17 @@ class ambbbFLBuilderModule extends FLBuilderModule
     return $class;
   }
 
-  public function classesString( array $chunks )
+  public function classes( $element = NULL, $obj = NULL )
   {
-    return implode(
-      ' ',
-      preg_filter( '/^/', 'ambbb-', $chunks )
+    $classes = [];
+    $classes[] = $this->bemClass( $element );
+    // ambbb__MODULE__ELEMENT_classes
+    $filter_tag = sprintf(
+      'ambbb__%s__%s_classes',
+      preg_replace( '/^ambbb[-_]*/', '', $this->slug ),
+      $element ?: 'base'
     );
+    $classes = apply_filters( $filter_tag, $classes, $this, $obj );
+    return implode( ' ', $classes );
   }
 }

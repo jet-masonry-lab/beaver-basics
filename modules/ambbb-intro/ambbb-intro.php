@@ -13,37 +13,6 @@ class ambbbIntroModule extends ambbbFLBuilderModule
       'url'         => plugins_url( '/', __FILE__ )
     ] );
   }
-
-  public function introClasses()
-  {
-    return $this->classesString( [ 'intro' ] );
-  }
-
-  public function eyebrowClasses()
-  {
-    return $this->classesString( [ 'intro__eyebrow' ] );
-  }
-
-  public function headingClasses()
-  {
-    return $this->classesString( [ 'intro__heading' ] );
-  }
-
-  public function headingTextClasses()
-  {
-    return $this->classesString( [ 'intro__heading_text' ] );
-  }
-
-  public function subheadClasses()
-  {
-    return $this->classesString( [ 'intro__subhead' ] );
-  }
-
-  public function bodyClasses()
-  {
-    return $this->classesString( [ 'intro__body' ] );
-  }
-
 }
 
 FLBuilder::register_module( 'ambbbIntroModule', [

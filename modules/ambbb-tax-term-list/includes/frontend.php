@@ -16,18 +16,18 @@ $terms = get_terms( array(
 <?php if ( is_wp_error( $terms ) ) : ?>
   Taxonomy not found.
 <?php elseif ( count( $terms ) ) : ?>
-  <ul class="c-tax-term-list">
+  <ul class="<?= esc_attr( $module->classes() ); ?>">
     <?php foreach ( $terms as $term ) : ?>
-      <li class="c-tax-term-list__term c-tax-term-list__term--<?= $term->slug; ?> <?= ( $settings->link ? 'c-tax-term-list__term--linked' : '' ); ?>">
+      <li class="<?= esc_attr( $module->classes( 'item', $term ) ); ?>">
         <?php if ( $settings->link ) : ?>
-          <a href="<?= get_term_link( $term, $settings->taxonomy ); ?>">
+          <a class="<?= esc_attr( $module->classes( 'link', $term ) ); ?>" href="<?= get_term_link( $term, $settings->taxonomy ); ?>">
         <?php endif; ?>
-        <span class="c-tax-term-list__term__name"><?= $term->name; ?></span>
+        <span class="<?= esc_attr( $module->classes( 'name', $term ) ); ?>"><?= $term->name; ?></span>
         <?php if ( $settings->description ) : ?>
-          <span class="c-tax-term-list__term__decription"><?= $term->description; ?></span>
+          <span class="<?= esc_attr( $module->classes( 'description', $term ) ); ?> c-tax-term-list__term__decription"><?= $term->description; ?></span>
         <?php endif; ?>
         <?php if ( $settings->count ) : ?>
-          <span class="c-tax-term-list__term__count"><?= $term->count; ?></span>
+          <span class="<?= esc_attr( $module->classes( 'count', $term ) ); ?> c-tax-term-list__term__count"><?= $term->count; ?></span>
         <?php endif; ?>
         <?php if ( $settings->link ) : ?>
           </a>
