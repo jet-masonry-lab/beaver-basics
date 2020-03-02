@@ -37,19 +37,19 @@ class ambbbVariationSettings
 
     if (
       isset( $form['tabs'] )
+      && isset( $form['tabs']['advanced'] )
       && in_array( $id, [ 'row', 'col'] )
     ) {
       // for rows and cols (and other misc forms), 'tabs' is a sub-array
-      $first_tab_key = array_keys( $form['tabs'] )[0];
-      self::add_variations_section( $form['tabs'][$first_tab_key]['sections'], $id );
+      self::add_variations_section( $form['tabs']['advanced']['sections'], $id );
 
     } else if (
       !isset( $form['tabs'] )
+      && isset( $form['advanced'] )
       && 'module_advanced' !== $id
     ) {
-      // for modules, the whole array is 'tabs'
-      $first_tab_key = array_keys( $form )[0];
-      self::add_variations_section( $form[$first_tab_key]['sections'], $id );
+      // for modules, the whole array is the 'tabs'
+      self::add_variations_section( $form['advanced']['sections'], $id );
 
     }
 
@@ -114,6 +114,7 @@ class ambbbVariationSettings
   {
     // Filter form settings... either set context, or add UI to Advanced tab
     add_filter( 'fl_builder_register_settings_form', [__CLASS__, 'filter_form_settings'], 10, 2 );
+    add_filter( 'fl_builder_register_module_settings_form', [__CLASS__, 'filter_form_settings'], 10, 2 );
 
     // Add row classes
     add_filter( 'fl_builder_row_attributes', [__CLASS__, 'add_row_variation_classes'], 10, 2 );
