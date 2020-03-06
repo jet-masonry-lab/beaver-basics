@@ -36,7 +36,9 @@
     "webpack-fix-style-only-entries": "^0.4.0",
     "webpack-livereload-plugin": "^2.2.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "smoothscroll-polyfill": "^0.4.4"
+  },
   "engines": {
     "yarn": "^1.0.0"
   }

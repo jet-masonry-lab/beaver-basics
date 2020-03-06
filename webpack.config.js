@@ -12,7 +12,9 @@ module.exports = (env, argv) => {
       'dist/settings.layout': './src/scss/settings.layout.scss',
       'modules/ambbb-image/css/frontend': './modules/ambbb-image/scss/frontend.scss',
       'modules/ambbb-image-grid/css/frontend': './modules/ambbb-image-grid/scss/frontend.scss',
-      'modules/ambbb-quote/css/frontend': './modules/ambbb-quote/scss/frontend.scss'
+      'modules/ambbb-quote/css/frontend': './modules/ambbb-quote/scss/frontend.scss',
+      'modules/ambbb-slider/js/frontend': './modules/ambbb-slider/src/frontend.js',
+      'modules/ambbb-slider/css/frontend': './modules/ambbb-slider/src/frontend.scss'
     },
     output: {
       path: path.resolve( __dirname ),

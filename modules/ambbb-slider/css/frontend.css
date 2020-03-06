@@ -1,0 +1,2 @@
+.ambbb-slider__viewport{align-items:stretch;display:flex;max-width:100%;overflow-x:scroll;position:relative;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;-ms-scroll-snap-type:x mandatory;scroll-snap-type:x mandatory;-ms-overflow-style:none}.ambbb-slider__viewport::-webkit-scrollbar{display:none}.ambbb-slider__viewport:before{content:'';display:block;padding-top:50%;width:0}.ambbb-slider__slide{flex:none;scroll-snap-align:start;width:100%}
+
