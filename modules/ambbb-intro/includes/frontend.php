@@ -66,9 +66,7 @@
 
 
   <?php if (
-    // body outside heading
     !empty( $settings->body )
-    && 'sibling' === $settings->body_rel
   ) : ?>
     <<?= $settings->body_tag; ?> class="<?= esc_attr( $module->classes( 'body' ) ); ?>">
       <?= wp_kses_post( $settings->body ); ?>
