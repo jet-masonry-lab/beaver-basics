@@ -215,10 +215,7 @@ FLBuilder::register_module( 'ambbbAcfFrontendFormModule', [
             'type' => 'select',
             'label' => __( 'Post Status', 'amb-beaver-basics' ),
             'default' => 'draft',
-            'options' => [
-              'draft' => __( 'Draft', 'amb-beaver-basics' ),
-              'pending' => __( 'Pending', 'amb-beaver-basics' ),
-            ],
+            'options' => get_post_statuses(),
           ],
 
           'post_type' => [
