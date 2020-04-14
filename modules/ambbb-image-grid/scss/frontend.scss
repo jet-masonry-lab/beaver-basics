@@ -83,11 +83,15 @@
     &--object-fit{
 
       &\:contain {
-        object-fit: contain;
+        &, & img {
+          object-fit: contain;
+        }
       }
 
       &\:cover {
-        object-fit: cover;
+        &, & img {
+          object-fit: cover;
+        }
       }
 
     }
