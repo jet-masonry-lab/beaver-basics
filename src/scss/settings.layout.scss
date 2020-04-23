@@ -2,8 +2,23 @@
 
 .ambbb-fl-row--flex-container {
 
+  // .fl-row-content-wrap
+  // .fl-row-content
+  // stretch contained elements
+  &,
+  .fl-row-content-wrap,
+  .fl-row-content {
+    align-items: stretch;
+    display: flex;
+  }
+  .fl-row-content-wrap,
+  .fl-row-content,
   .fl-col-group {
-    // container props
+    flex: 1;
+  }
+
+  // actual flex container
+  .fl-col-group {
     display: flex;
     align-content: var( --ambbb-fl-row__align-content, stretch );
     align-items:  var( --ambbb-fl-row__align-items, stretch );
@@ -42,8 +57,17 @@
 
 .ambbb-fl-col--flex-container {
 
+  // stretch contained elements
+  & {
+    align-items: stretch;
+    display: flex;
+  }
   .fl-col-content {
-    // container props
+    flex: 1;
+  }
+
+  // actual flex container
+  .fl-col-content {
     display: flex;
     align-content: var( --ambbb-fl-column__align-content, stretch );
     align-items:  var( --ambbb-fl-column__align-items, stretch );
@@ -66,8 +90,17 @@
 
 .ambbb-fl-module--flex-container {
 
+  // stretch contained elements
+  & {
+    align-items: stretch;
+    display: flex;
+  }
   .fl-module-content {
-    // container props
+    flex: 1;
+  }
+
+  // actual flex container
+  .fl-module-content {
     display: flex;
     align-content: var( --ambbb-fl-module__align-content, stretch );
     align-items:  var( --ambbb-fl-module__align-items, stretch );
