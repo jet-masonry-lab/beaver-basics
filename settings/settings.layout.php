@@ -23,7 +23,7 @@ class ambbbFlexSettings
         unset( $tabs['advanced'] );
       }
       $tabs['flex'] = [
-        'title' => __( 'Flex', 'amb-beaver-basics' ),
+        'title' => __( 'Flexbox', 'amb-beaver-basics' ),
         'sections' => [],
       ];
       if ( isset( $advanced ) ) {
@@ -124,8 +124,6 @@ class ambbbFlexSettings
         'title' => __( 'Flex Item', 'amb-beaver-basics' ),
         'fields' => [
 
-          // TODO: provide note indicating that this only matters if parent is set to flex container
-
           'align-self' => [
             'type' => 'select',
             'label' => __( 'Align Self', 'amb-beaver-basics' ),
@@ -196,6 +194,72 @@ class ambbbFlexSettings
     return $tabs;
   }
 
+  public static function add_flex_row_info( $tabs )
+  {
+    if ( isset( $tabs['flex'] ) ) {
+      $tabs['flex']['sections'] = array_merge(
+        [
+          'flex_info' => [
+            'title' => '',
+            'fields' => [
+              'usage' => [
+                'type' => 'raw',
+                'label' => '',
+                'content' => __( '<p><strong>Usage:</strong> Setting a row as a flex container makes each column (.fl-col) a flex child.</p>', 'amb-beaver-basics' ),
+              ],
+            ],
+          ],
+        ],
+        $tabs['flex']['sections']
+      );
+    }
+    return $tabs;
+  }
+
+  public static function add_flex_col_info( $tabs )
+  {
+    if ( isset( $tabs['flex'] ) ) {
+      $tabs['flex']['sections'] = array_merge(
+        [
+          'flex_info' => [
+            'title' => '',
+            'fields' => [
+              'usage' => [
+                'type' => 'raw',
+                'label' => '',
+                'content' => __( '<p><strong>Usage:</strong> Setting a column as a flex container makes each module (.fl-module) a flex child.</p>', 'amb-beaver-basics' ),
+              ],
+            ],
+          ],
+        ],
+        $tabs['flex']['sections']
+      );
+    }
+    return $tabs;
+  }
+
+  public static function add_flex_module_info( $tabs )
+  {
+    if ( isset( $tabs['flex'] ) ) {
+      $tabs['flex']['sections'] = array_merge(
+        [
+          'flex_info' => [
+            'title' => '',
+            'fields' => [
+              'usage' => [
+                'type' => 'raw',
+                'label' => '',
+                'content' => __( '<p><strong>Usage:</strong> Setting a module as flex container applies flexbox layout to .fl-module-content and its children.</p>', 'amb-beaver-basics' ),
+              ],
+            ],
+          ],
+        ],
+        $tabs['flex']['sections']
+      );
+    }
+    return $tabs;
+  }
+
   public static function add_flex_settings( $form, $id )
   {
     // Modules don't have 'tabs' defined at the top level
@@ -209,10 +273,13 @@ class ambbbFlexSettings
       if ( 'row' === $id ) {
         $form['tabs'] = self::add_flex_settings_tab( $form['tabs'] );
         $form['tabs'] = self::add_flex_container_settings( $form['tabs'] );
+        $form['tabs'] = self::add_flex_row_info( $form['tabs'] );
       } else if ( 'col' === $id ) {
         $form['tabs'] = self::add_flex_settings_tab( $form['tabs'] );
-        $form['tabs'] = self::add_flex_item_settings( $form['tabs'] );
         $form['tabs'] = self::add_flex_container_settings( $form['tabs'] );
+        // TODO: add item settings only if parent is a flex container
+        $form['tabs'] = self::add_flex_item_settings( $form['tabs'] );
+        $form['tabs'] = self::add_flex_col_info( $form['tabs'] );
       }
 
     } else if (
@@ -221,8 +288,10 @@ class ambbbFlexSettings
     ) {
       // for modules, the whole array is 'tabs'
       $form = self::add_flex_settings_tab( $form );
-      $form = self::add_flex_item_settings( $form );
       $form = self::add_flex_container_settings( $form );
+      // TODO: add item settings only if parent is a flex container
+      $form = self::add_flex_item_settings( $form );
+      $form = self::add_flex_module_info( $form );
 
     }
 
