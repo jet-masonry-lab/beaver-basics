@@ -7,7 +7,10 @@
 
 <div class="<?= esc_attr( $module->classes() ); ?>">
 
-  <?php if ( 'block' === $settings->link_type ) : ?>
+  <?php if (
+    'block' === $settings->link_type
+    && !empty( $settings->link_url )
+  ) : ?>
     <a href="<?= esc_url( $settings->link_url ); ?>" class="<?= esc_attr( $module->classes( 'link' ) ); ?>">
   <?php endif; ?>
 
@@ -52,7 +55,10 @@
     <?php endif; ?>
   </div>
 
-  <?php if ( 'block' === $settings->link_type ) : ?>
+  <?php if (
+    'block' === $settings->link_type
+    && !empty( $settings->link_url )
+  ) : ?>
     </a>
   <?php endif; ?>
 

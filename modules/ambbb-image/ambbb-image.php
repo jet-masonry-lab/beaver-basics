@@ -50,16 +50,19 @@ FLBuilder::register_module( 'ambbbImageModule', [
       'content' => [
         'title' => '',
         'fields' => [
+
           'image' => [
             'type' => 'photo',
             'label' => __( 'Image', 'amb-beaver-basics' ),
             'show_remove' => true,
           ],
+
           'image_size' => [
             'type' => 'photo-sizes',
             'label' => __( 'Image Size', 'amb-beaver-basics' ),
             'default' => 'medium'
           ],
+
           'image_fit' => [
             'type' => 'select',
             'label' => __( 'Image Fit', 'amb-beaver-basics' ),
@@ -70,6 +73,7 @@ FLBuilder::register_module( 'ambbbImageModule', [
               'cover' => __( 'Cover', 'amb-beaver-basics' ),
             ],
           ],
+
           'output_caption' => [
             'type' => 'button-group',
             'label' => __( 'Output Caption?', 'amb-beaver-basics' ),
@@ -79,6 +83,17 @@ FLBuilder::register_module( 'ambbbImageModule', [
               0 => __( 'No', 'amb-beaver-basics' ),
             ],
           ],
+
+          'link_url' => [
+            'type' => 'link',
+            'label' => __( 'Link URL', 'amb-beaver-basics' ),
+            'show_target' => true,
+            'preview' => [
+              'type' => 'none'
+            ],
+            'connections' => [ 'url' ],
+          ],
+
         ],
       ],
     ],
