@@ -11,7 +11,7 @@ class ambbbAcfFrontendFormModule extends ambbbFLBuilderModule
       'name' => __( 'Frontend Form', 'amb-beaver-basics' ),
       'description' => __( 'A frontend form.', 'amb-beaver-basics' ),
       'group' => __( 'Beaver Basics', 'amb-beaver-basics' ),
-      'category' => __( 'BB - ACF', 'amb-beaver-basics' ),
+      'category' => __( 'BBZ - Advanced', 'amb-beaver-basics' ),
       'dir' => plugin_dir_path( __FILE__ ),
       'url' => plugins_url( '/', __FILE__ )
     ] );
