@@ -46,6 +46,7 @@ function ambbb__init_modules()
     // Modules
     include_once( 'modules/ambbb-acf-frontend-form/ambbb-acf-frontend-form.php');
     include_once( 'modules/ambbb-button/ambbb-button.php');
+    include_once( 'modules/ambbb-callout/ambbb-callout.php');
     include_once( 'modules/ambbb-button-group/ambbb-button-group.php');
     include_once( 'modules/ambbb-csv-to-table/ambbb-csv-to-table.php');
     include_once( 'modules/ambbb-gallery/ambbb-gallery.php');

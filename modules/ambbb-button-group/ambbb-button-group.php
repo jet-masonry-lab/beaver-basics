@@ -18,9 +18,6 @@ class ambbbButtonGroupModule extends ambbbFLBuilderModule
 
   public static function addButtonClasses( $classes, $module, $button )
   {
-    if ( !empty( $button->style ) ) {
-      $classes[] = $module->bemClass( 'button', $button->style );
-    }
     if ( !empty( $button->variations ) ) {
       foreach( $button->variations as $variation ) {
         if ( !empty( $variation ) ) {

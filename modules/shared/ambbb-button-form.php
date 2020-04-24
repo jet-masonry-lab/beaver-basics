@@ -33,21 +33,9 @@ FLBuilder::register_settings_form('ambbb-button-form', [
               'connections' => [ 'url' ],
             ],
 
-            // TODO: maybe instead, make this a repeating text field called "variations" which gets appended to the component CSS class for styling purposes
-            'style' => [
-              'type' => 'button-group',
-              'label' => __( 'Button Style', 'amb-beaver-basics' ),
-              'default' => 'primary',
-              'options' => [
-                'primary' => __( 'Primary', 'amb-beaver-basics' ),
-                'secondary' => __( 'Secondary', 'amb-beaver-basics' ),
-                'link' => __( 'Link', 'amb-beaver-basics' ),
-              ],
-            ],
-
             'variations' => [
               'type' => 'text',
-              'label' => __( 'Variation', 'amb-beaver-basics' ),
+              'label' => __( 'CSS Variation', 'amb-beaver-basics' ),
               'default' => '',
               'placeholder' => __( 'primary', 'amb-beaver-basics' ),
               'multiple' => true,
