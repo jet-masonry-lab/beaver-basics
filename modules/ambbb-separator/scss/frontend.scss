@@ -1,0 +1,16 @@
+.ambbb-separator {
+
+  html.fl-builder-edit & {
+    border: 1px dashed #f0f;
+    &:after {
+      color: #f0f;
+      content: "Separator";
+      display: block;
+      font-size: 9px;
+      position: absolute; right: 0; bottom: 0; left: 0;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+
+}

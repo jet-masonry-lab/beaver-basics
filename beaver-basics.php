@@ -57,6 +57,7 @@ function ambbb__init_modules()
     include_once( 'modules/ambbb-post/ambbb-post.php');
     include_once( 'modules/ambbb-quote/ambbb-quote.php');
     include_once( 'modules/ambbb-search-form/ambbb-search-form.php');
+    include_once( 'modules/ambbb-separator/ambbb-separator.php');
     include_once( 'modules/ambbb-slider/ambbb-slider.php');
     include_once( 'modules/ambbb-tax-term-list/ambbb-tax-term-list.php');
 

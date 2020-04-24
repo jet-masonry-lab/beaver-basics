@@ -13,6 +13,7 @@ module.exports = (env, argv) => {
       'modules/ambbb-image/css/frontend': './modules/ambbb-image/scss/frontend.scss',
       'modules/ambbb-image-grid/css/frontend': './modules/ambbb-image-grid/scss/frontend.scss',
       'modules/ambbb-quote/css/frontend': './modules/ambbb-quote/scss/frontend.scss',
+      'modules/ambbb-separator/css/frontend': './modules/ambbb-separator/scss/frontend.scss',
       'modules/ambbb-slider/js/frontend': './modules/ambbb-slider/src/frontend.js',
       'modules/ambbb-slider/css/frontend': './modules/ambbb-slider/src/frontend.scss'
     },
