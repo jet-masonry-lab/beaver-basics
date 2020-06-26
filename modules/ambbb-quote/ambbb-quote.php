@@ -74,7 +74,7 @@ FLBuilder::register_module( 'ambbbQuoteModule', [
           'markup' => [
             'type' => 'raw',
             'label' => __( 'Markup', 'amb-beaver-basics' ),
-            'content' => "<pre>" . esc_html( "<figure class=\"c-quote\">\n\t<blockquote class=\"c-quote__body\" cite=\"[citation]\">[quote]</blockquote>\n\t<figcaption class=\"c-quote__attribution\">[attribution]</figcaption>\n</figure></pre>" ) . "</pre>"
+            'content' => "<pre>" . esc_html( "<figure class=\"ambbb-quote\">\n\t<blockquote class=\"ambbb-quote__body\" cite=\"[citation]\">[quote]</blockquote>\n\t<figcaption class=\"ambbb-quote__attribution\">[attribution]</figcaption>\n</figure></pre>" ) . "</pre>"
           ],
         ],
       ],
