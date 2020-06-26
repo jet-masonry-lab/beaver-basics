@@ -1,6 +1,7 @@
 // webpack v4
 
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
@@ -54,6 +55,12 @@ module.exports = (env, argv) => {
       new FixStyleOnlyEntriesPlugin(),
       new MiniCssExtractPlugin({
         filename: '[name].css'
+      }),
+      new CopyPlugin({
+        patterns: [
+          { from: './node_modules/video.js/dist/video.min.js', to: './modules/ambbb-video/js/video.min.js' },
+          { from: './node_modules/video.js/dist/video-js.min.css', to: './modules/ambbb-video/css/video-js.min.css' },
+        ],
       }),
       new LiveReloadPlugin({
         protocol: 'https'

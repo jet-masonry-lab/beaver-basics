@@ -39,6 +39,13 @@ class ambbbFLBuilderModule extends FLBuilderModule
     return (bool) $this->settings->{$key};
   }
 
+  protected function mayBeBoolean( $input )
+  {
+    if ( 'true' === $input ) { $input = true; }
+    if ( 'false' === $input ) { $input = false; }
+    return $input;
+  }
+
   public function escInlineHtml( $string )
   {
     return wp_kses( $string, ambbb__allowed_html__inline() );
