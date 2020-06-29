@@ -5,7 +5,7 @@
 // - $settings
 ?>
 
-<div class="<?= esc_attr( $module->classes() ); ?>">
+<div class="<?= esc_attr( $module->classes() ); ?>" data-video_id="ambbb-video--<?= esc_attr( $id ); ?>">
 
   <?php if ( ! $module->getValidSources() ) : ?>
 

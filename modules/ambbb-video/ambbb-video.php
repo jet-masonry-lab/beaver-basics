@@ -15,6 +15,8 @@ class ambbbVideoModule extends ambbbFLBuilderModule
       'url'         => plugins_url( '/', __FILE__ )
     ] );
 
+    add_filter( 'ambbb__video__base_classes', [__CLASS__, 'addBaseClasses'], 10, 3 );
+
     $this->add_css(
       'video-js-css',
       $this->url . 'css/video-js.min.css'
@@ -26,10 +28,32 @@ class ambbbVideoModule extends ambbbFLBuilderModule
     );
   }
 
+  public function shouldAutoplayOnScroll()
+  {
+    return ( 'scroll' === $this->settings->autoplay );
+  }
+
+  public function enqueue_scripts()
+  {
+    if ( $this->shouldAutoplayOnScroll() ) {
+      $this->add_js( 'jquery-waypoints' );
+      $this->add_js(
+        'ambbb-video-autoplay-scroll',
+        $this->url . 'js/autoplay-scroll.js',
+        [ 'jquery-waypoints' ],
+        NULL,
+        true
+      );
+    }
+  }
+
   public function getSetup()
   {
+    // handle special cases
+    $autoplay = $this->shouldAutoplayOnScroll() ? false : $this->settings->autoplay;
+
     $settings = [];
-    $settings['autoplay'] = $this->mayBeBoolean( $this->settings->autoplay );
+    $settings['autoplay'] = $this->mayBeBoolean( $autoplay );
     $settings['controls'] = $this->mayBeBoolean( $this->settings->controls );
     $settings['loop'] = $this->mayBeBoolean( $this->settings->loop );
     $settings['muted'] = $this->mayBeBoolean( $this->settings->muted );
@@ -79,6 +103,14 @@ class ambbbVideoModule extends ambbbFLBuilderModule
       'video/%s',
       $this->getSourceExtension( $source )
     );
+  }
+
+  public static function addBaseClasses( $classes, $module )
+  {
+    if ( $module->shouldAutoplayOnScroll() ) {
+      $classes[] = $module->bemClass( NULL, 'play-on-scroll' );
+    }
+    return $classes;
   }
 
 }
@@ -143,6 +175,7 @@ FLBuilder::register_module( 'ambbbVideoModule', [
               'muted' => __( 'Muted', 'amb-beaver-basics' ),
               'play' => __( 'Play', 'amb-beaver-basics' ),
               'any' => __( 'Any', 'amb-beaver-basics' ),
+              'scroll' => __( 'Scroll', 'amb-beaver-basics' ),
             ],
           ],
 
@@ -191,4 +224,5 @@ FLBuilder::register_module( 'ambbbVideoModule', [
       ],
     ],
   ],
+
 ] );

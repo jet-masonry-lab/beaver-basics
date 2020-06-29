@@ -116,6 +116,7 @@ let rollup_config = [
 
   // JS Sources
   get_module_js_config( 'slider', 'frontend' ),
+  get_module_js_config( 'video', 'autoplay-scroll' ),
 
 ];
 
