@@ -47,6 +47,21 @@ class ambbbVideoModule extends ambbbFLBuilderModule
     }
   }
 
+  public function getAspectRatio()
+  {
+    $aspect_ratio = '';
+    if (
+      'custom' == $this->settings->aspectRatio
+      && $this->has( 'aspectRatio_width' )
+      && $this->has( 'aspectRatio_height' )
+    ) {
+      $aspect_ratio = $this->settings->aspectRatio_width . ':' . $this->settings->aspectRatio_height;
+    } else {
+      $aspect_ratio = str_replace( 'x', ':', $this->settings->aspectRatio );
+    }
+    return $aspect_ratio;
+  }
+
   public function getSetup()
   {
     // handle special cases
@@ -61,8 +76,15 @@ class ambbbVideoModule extends ambbbFLBuilderModule
       $settings['poster'] = wp_get_attachment_image_url( $this->settings->poster, $this->settings->poster_size );
     }
     $settings['preload'] = 'true' === $this->settings->preload ? 'auto' : '';
-    $settings['aspectRatio'] = str_replace( 'x', ':', $this->settings->aspectRatio );
-    $settings['fluid'] = $this->mayBeBoolean( $this->settings->fluid );
+    switch ( $this->settings->mode ) {
+      case 'fill':
+        $settings['fill'] = true;
+      break;
+      case 'fluid':
+        $settings['fluid'] = true;
+        $settings['aspectRatio'] = $this->getAspectRatio();
+      break;
+    }
     return wp_json_encode(
       array_filter(
         $settings
@@ -136,27 +158,49 @@ FLBuilder::register_module( 'ambbbVideoModule', [
             'show_remove' => true,
           ],
 
+          'mode' => [
+            'type' => 'select',
+            'label' => __( 'Mode', 'amb-beaver-basics' ),
+            'default' => 'fluid',
+            'options' => [
+              'fluid' => __( 'Fluid', 'amb-beaver-basics' ),
+              'fill' => __( 'Fill', 'amb-beaver-basics' ),
+            ],
+            'toggle' => [
+              'fluid' => [
+                'fields' => [ 'aspectRatio' ],
+              ],
+            ],
+          ],
+
           'aspectRatio' => [
             'type' => 'select',
             'label' => __( 'Aspect Ratio', 'amb-beaver-basics' ),
-            'default' => '16x9',
+            'default' => 'auto',
             'options' => [
+              'auto' => __( 'Auto', 'amb-beaver-basics' ),
               '21x9' => __( 'Cinema (12:9)', 'amb-beaver-basics' ),
               '16x9' => __( 'HDTV (16:9)', 'amb-beaver-basics' ),
               '4x3' => __( 'Television (4:3)', 'amb-beaver-basics' ),
               '1x1' => __( 'Square (1:1)', 'amb-beaver-basics' ),
               '9x16' => __( 'Vertical (9:16)', 'amb-beaver-basics' ),
+              'custom' => __( 'Custom', 'amb-beaver-basics' ),
+            ],
+            'toggle' => [
+              'custom' => [
+                'fields' => [ 'aspectRatio_width', 'aspectRatio_height' ],
+              ],
             ],
           ],
 
-          'fluid' => [
-            'type' => 'select',
-            'label' => __( 'Fluid', 'amb-beaver-basics' ),
-            'default' => 'true',
-            'options' => [
-              'true' => __( 'True', 'amb-beaver-basics' ),
-              'false' => __( 'False', 'amb-beaver-basics' ),
-            ],
+          'aspectRatio_width' => [
+            'type' => 'unit',
+            'label' => __( 'Aspect Width', 'amb-beaver-basics' ),
+          ],
+
+          'aspectRatio_height' => [
+            'type' => 'unit',
+            'label' => __( 'Aspect Height', 'amb-beaver-basics' ),
           ],
 
         ],
