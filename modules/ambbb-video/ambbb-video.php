@@ -183,7 +183,7 @@ FLBuilder::register_module( 'ambbbVideoModule', [
             'default' => '',
             'options' => [
               '' => __( 'Intrinsic', 'amb-beaver-basics' ),
-              '21x9' => __( 'Cinema (12:9)', 'amb-beaver-basics' ),
+              '21x9' => __( 'Cinema (21:9)', 'amb-beaver-basics' ),
               '16x9' => __( 'HDTV (16:9)', 'amb-beaver-basics' ),
               '4x3' => __( 'Television (4:3)', 'amb-beaver-basics' ),
               '1x1' => __( 'Square (1:1)', 'amb-beaver-basics' ),

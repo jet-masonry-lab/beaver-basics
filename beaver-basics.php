@@ -62,6 +62,7 @@ function ambbb__init_modules()
     include_once( 'modules/ambbb-slider/ambbb-slider.php');
     include_once( 'modules/ambbb-tax-term-list/ambbb-tax-term-list.php');
     include_once( 'modules/ambbb-video/ambbb-video.php');
+    include_once( 'modules/ambbb-youtube/ambbb-youtube.php');
 
   }
 }

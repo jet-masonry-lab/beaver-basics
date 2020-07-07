@@ -113,6 +113,7 @@ let rollup_config = [
   get_module_css_config( 'quote', 'frontend' ),
   get_module_css_config( 'separator', 'frontend' ),
   get_module_css_config( 'slider', 'frontend' ),
+  get_module_css_config( 'youtube', 'frontend' ),
 
   // JS Sources
   get_module_js_config( 'slider', 'frontend' ),
