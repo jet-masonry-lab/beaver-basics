@@ -17,6 +17,7 @@
       id="ambbb-video--<?= esc_attr( $id ); ?>"
       class="ambbb-video__video video-js"
       data-setup='<?= $module->getSetup(); ?>'
+      playsinline
     >
       <?php if ( !isset( $_GET['fl_builder'] ) ): ?>
         <?php foreach ( $module->getValidSources() as $source ) : ?>
