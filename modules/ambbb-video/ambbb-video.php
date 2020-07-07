@@ -82,7 +82,11 @@ class ambbbVideoModule extends ambbbFLBuilderModule
       break;
       case 'fluid':
         $settings['fluid'] = true;
-        $settings['aspectRatio'] = $this->getAspectRatio();
+        if ( $this->has( 'aspectRatio' ) ) {
+          $settings['aspectRatio'] = $this->getAspectRatio();
+        } else {
+          $settings['fluid'] = true;
+        }
       break;
     }
     return wp_json_encode(
@@ -176,9 +180,9 @@ FLBuilder::register_module( 'ambbbVideoModule', [
           'aspectRatio' => [
             'type' => 'select',
             'label' => __( 'Aspect Ratio', 'amb-beaver-basics' ),
-            'default' => 'auto',
+            'default' => '',
             'options' => [
-              'auto' => __( 'Auto', 'amb-beaver-basics' ),
+              '' => __( 'Intrinsic', 'amb-beaver-basics' ),
               '21x9' => __( 'Cinema (12:9)', 'amb-beaver-basics' ),
               '16x9' => __( 'HDTV (16:9)', 'amb-beaver-basics' ),
               '4x3' => __( 'Television (4:3)', 'amb-beaver-basics' ),
