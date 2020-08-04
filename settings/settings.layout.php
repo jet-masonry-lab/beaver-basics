@@ -310,6 +310,7 @@ class ambbbFlexSettings
 
   public static function get_responsive_css_custom_properties( $node, $properties )
   {
+    $css_output = '';
     $selector = ".fl-node-{$node->node}";
     $property_prefix = "ambbb-fl-{$node->type}__";
 
@@ -328,11 +329,11 @@ class ambbbFlexSettings
             '--%s%s:%s;',
             $property_prefix,
             $property_name,
-            $property_unit_value ?: $property_value
+            $property_value
           );
         }
       }
-      // START: PROPERTIES LOOP
+      // END: PROPERTIES LOOP
 
       // wrap in selector (e.g. .fl-node-123 {} )
       if ( !empty( $css_ruleset ) ) {
