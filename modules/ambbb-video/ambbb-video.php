@@ -30,7 +30,10 @@ class ambbbVideoModule extends ambbbFLBuilderModule
 
   public function shouldAutoplayOnScroll()
   {
-    return ( 'scroll' === $this->settings->autoplay );
+    return (
+      isset( $this->settings->autoplay )
+      && 'scroll' === $this->settings->autoplay
+    );
   }
 
   public function enqueue_scripts()
