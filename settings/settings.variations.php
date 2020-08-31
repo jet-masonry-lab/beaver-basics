@@ -61,7 +61,7 @@ class ambbbVariationSettings
   private static function get_valid_variations( $filter, $obj )
   {
     $available_variations = (array) array_keys( apply_filters( $filter, [] ) );
-    $selected_variations = (array) $obj->settings->variations;
+    $selected_variations = empty( $obj->settings->variations ) ? [] : (array) $obj->settings->variations;
     return array_intersect( $available_variations, $selected_variations );
   }
 
