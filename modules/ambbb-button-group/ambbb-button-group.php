@@ -41,7 +41,7 @@ FLBuilder::register_module( 'ambbbButtonGroupModule', [
             'type' => 'form',
             'label' => __( 'Button', 'amb-beaver-basics' ),
             'form' => 'ambbb-button-form',
-            'preview_text' => 'link_text',
+            'preview_text' => 'text',
             'multiple' => true,
           ],
 

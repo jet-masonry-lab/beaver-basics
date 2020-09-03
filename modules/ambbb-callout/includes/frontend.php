@@ -9,9 +9,9 @@
 
   <?php if (
     'block' === $settings->link_type
-    && !empty( $settings->link_url )
+    && !empty( $settings->link )
   ) : ?>
-    <a href="<?= esc_url( $settings->link_url ); ?>" class="<?= esc_attr( $module->classes( 'link' ) ); ?>">
+    <a class="<?= esc_attr( $module->classes( 'link' ) ); ?>" href="<?= esc_url( $settings->link ); ?>" <?= $module->linkAttrs( 'link' ); ?>>
   <?php endif; ?>
 
   <?php if ( !empty( $settings->image ) ) : ?>
@@ -42,17 +42,17 @@
     <?php if (
       'buttons' === $settings->link_type
       && !empty( $settings->buttons )
-      && !empty( $settings->buttons[0]->link_url )
-      && !empty( $settings->buttons[0]->link_text )
+      && !empty( $settings->buttons[0]->link )
+      && !empty( $settings->buttons[0]->text )
     ) : ?>
       <div class="<?= esc_attr( $module->classes( 'buttons' ) ); ?>">
         <?php foreach( $settings->buttons as $button ) : ?>
           <?php  if (
-            !empty( $button->link_url )
-            && !empty( $button->link_text )
+            !empty( $button->link )
+            && !empty( $button->text )
           ) : ?>
-            <a href="<?= esc_url( $button->link_url ); ?>" target="<?= esc_attr( $settings->link_url_target ); ?>" <?= $module->noopener( $settings->link_url_target ); ?> class="<?= esc_attr( $module->classes( 'button', $button ) ); ?>">
-              <span class="<?= esc_attr( $module->classes( 'text', $button ) ); ?>"><?= $module->escInlineHtml( $button->link_text, $button ); ?></span>
+            <a class="<?= esc_attr( $module->classes( 'button', $button ) ); ?>" href="<?= esc_url( $button->link ); ?>" <?= $module->linkAttrs( 'link', $button ); ?>>
+              <span class="<?= esc_attr( $module->classes( 'text', $button ) ); ?>"><?= $module->escInlineHtml( $button->text, $button ); ?></span>
             </a>
           <?php endif;  ?>
         <?php endforeach; ?>
@@ -62,7 +62,7 @@
 
   <?php if (
     'block' === $settings->link_type
-    && !empty( $settings->link_url )
+    && !empty( $settings->link )
   ) : ?>
     </a>
   <?php endif; ?>

@@ -26,6 +26,7 @@ FLBuilder::register_module( 'ambbbButtonModule', [
       'general' => [
         'title' => '',
         'fields' => [
+
           'text' => [
             'type' => 'text',
             'label' => __( 'Text', 'amb-beaver-basics' ),
@@ -36,27 +37,19 @@ FLBuilder::register_module( 'ambbbButtonModule', [
             ],
             'connections' => [ 'string' ],
           ],
+
           'link' => [
             'type' => 'link',
             'label' => __( 'Link', 'amb-beaver-basics' ),
             'placeholder' => __( 'http://www.example.com', 'amb-beaver-basics' ),
+            'show_target' => true,
+            'show_nofollow' => true,
             'preview' => [
-              'type' => 'none',
+              'type' => 'none'
             ],
             'connections' => [ 'url' ],
           ],
-          'link_target' => [
-            'type' => 'select',
-            'label' => __( 'Link Target', 'amb-beaver-basics' ),
-            'default' => '_self',
-            'options' => [
-              '_self' => __( 'Same Window', 'amb-beaver-basics' ),
-              '_blank' => __( 'New Window', 'amb-beaver-basics' ),
-            ],
-            'preview' => [
-              'type' => 'none',
-            ],
-          ],
+
         ],
       ],
     ],

@@ -93,16 +93,18 @@ FLBuilder::register_module( 'ambbbCalloutModule', [
               'none' => __( 'None', 'amb-beaver-basics' ),
             ],
             'toggle' => [
-              'block' => ['fields' => ['link_url']],
+              'block' => ['fields' => ['link']],
               'buttons' => ['fields' => ['buttons']],
               'none' => ['fields' => []],
             ],
           ],
 
-          'link_url' => [
+          'link' => [
             'type' => 'link',
-            'label' => __( 'Link URL', 'amb-beaver-basics' ),
+            'label' => __( 'Link', 'amb-beaver-basics' ),
+            'placeholder' => __( 'http://www.example.com', 'amb-beaver-basics' ),
             'show_target' => true,
+            'show_nofollow' => true,
             'preview' => [
               'type' => 'none'
             ],

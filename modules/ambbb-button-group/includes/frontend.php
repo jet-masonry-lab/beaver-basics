@@ -9,11 +9,11 @@
   <div class="<?= esc_attr( $module->classes() ); ?>">
     <?php foreach( $settings->buttons as $button ) : ?>
       <?php  if (
-        !empty( $button->link_url )
-        && !empty( $button->link_text )
+        !empty( $button->link )
+        && !empty( $button->text )
       ) : ?>
-        <a href="<?= esc_url( $button->link_url ); ?>" target="<?= esc_attr( $settings->link_url_target ); ?>" <?= $module->noopener( $settings->link_url_target ); ?> class="<?= esc_attr( $module->classes( 'button', $button ) ); ?>">
-          <span class="<?= esc_attr( $module->classes( 'text', $button ) ); ?>"><?= $module->escInlineHtml( $button->link_text ); ?></span>
+        <a class="<?= esc_attr( $module->classes( 'button', $button ) ); ?>" href="<?= esc_url( $button->link ); ?>" <?= $module->linkAttrs( 'link' ); ?>>
+          <span class="<?= esc_attr( $module->classes( 'text', $button ) ); ?>"><?= $module->escInlineHtml( $button->text ); ?></span>
         </a>
       <?php endif;  ?>
     <?php endforeach; ?>

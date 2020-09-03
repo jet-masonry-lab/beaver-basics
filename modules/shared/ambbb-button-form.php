@@ -13,20 +13,23 @@ FLBuilder::register_settings_form('ambbb-button-form', [
           'title'  => '',
           'fields' => [
 
-            'link_text' => [
+            'text' => [
               'type' => 'text',
-              'label' => __( 'Link Text', 'amb-beaver-basics' ),
-              'default' => '',
-              'connections' => [ 'string' ],
+              'label' => __( 'Text', 'amb-beaver-basics' ),
+              'default' => __( 'Click Here', 'amb-beaver-basics' ),
               'preview' => [
-                'type' => 'none'
+                'type' => 'text',
+                'selector' => '.fl-button-text',
               ],
+              'connections' => [ 'string' ],
             ],
 
-            'link_url' => [
+            'link' => [
               'type' => 'link',
-              'label' => __( 'Link URL', 'amb-beaver-basics' ),
+              'label' => __( 'Link', 'amb-beaver-basics' ),
+              'placeholder' => __( 'http://www.example.com', 'amb-beaver-basics' ),
               'show_target' => true,
+              'show_nofollow' => true,
               'preview' => [
                 'type' => 'none'
               ],
