@@ -56,6 +56,7 @@ function ambbb__init_modules()
     include_once( 'modules/ambbb-intro/ambbb-intro.php');
     include_once( 'modules/ambbb-menu/ambbb-menu.php');
     include_once( 'modules/ambbb-post/ambbb-post.php');
+    include_once( 'modules/ambbb-queried-object/ambbb-queried-object.php');
     include_once( 'modules/ambbb-quote/ambbb-quote.php');
     include_once( 'modules/ambbb-search-form/ambbb-search-form.php');
     include_once( 'modules/ambbb-separator/ambbb-separator.php');
