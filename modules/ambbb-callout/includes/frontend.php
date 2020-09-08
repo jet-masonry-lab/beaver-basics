@@ -22,21 +22,21 @@
 
   <div class="<?= esc_attr( $module->classes( 'text-area' ) ); ?>">
     <?php if ( !empty( $settings->eyebrow ) ) : ?>
-      <<?= $settings->eyebrow_tag; ?> class="<?= esc_attr( $module->classes( 'eyebrow' ) ); ?>">
+      <<?= tag_escape( $settings->eyebrow_tag ); ?> class="<?= esc_attr( $module->classes( 'eyebrow' ) ); ?>">
         <?= $module->escInlineHtml( $settings->eyebrow ); ?>
-      </<?= $settings->eyebrow_tag; ?>>
+      </<?= tag_escape( $settings->eyebrow_tag ); ?>>
     <?php endif; ?>
 
     <?php if ( !empty( $settings->heading ) ) : ?>
-      <<?= $settings->heading_tag; ?> class="<?= esc_attr( $module->classes( 'heading' ) ); ?>">
+      <<?= tag_escape( $settings->heading_tag ); ?> class="<?= esc_attr( $module->classes( 'heading' ) ); ?>">
         <?= $module->escInlineHtml( $settings->heading ); ?>
-      </<?= $settings->heading_tag; ?>>
+      </<?= tag_escape( $settings->heading_tag ); ?>>
     <?php endif; ?>
 
     <?php if ( !empty( $settings->body ) ) : ?>
-      <<?= $settings->body_tag; ?> class="<?= esc_attr( $module->classes( 'body' ) ); ?>">
+      <<?= tag_escape( $settings->body_tag ); ?> class="<?= esc_attr( $module->classes( 'body' ) ); ?>">
         <?= wp_kses_post( $settings->body ); ?>
-      </<?= $settings->body_tag; ?>>
+      </<?= tag_escape( $settings->body_tag ); ?>>
     <?php endif; ?>
 
     <?php if (

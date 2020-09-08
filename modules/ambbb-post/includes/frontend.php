@@ -19,11 +19,11 @@
       <?php if ( 'parts' === $settings->link_type ) : ?></a><?php endif; ?>
     </div>
 
-    <<?= $settings->post_title_tag; ?> class="<?= esc_attr( $module->classes( 'title' ) ); ?>">
+    <<?= tag_escape( $settings->post_title_tag ); ?> class="<?= esc_attr( $module->classes( 'title' ) ); ?>">
       <?php if ( 'parts' === $settings->link_type ) : ?><a href="<?= get_the_permalink( $settings->post ); ?>" class="<?= esc_attr( $module->classes( 'permalink' ) ); ?>"><?php endif; ?>
       <?= get_the_title( $settings->post ); ?>
       <?php if ( 'parts' === $settings->link_type ) : ?></a><?php endif; ?>
-    </<?= $settings->post_title_tag; ?>>
+    </<?= tag_escape( $settings->post_title_tag ); ?>>
 
     <?php if ( 'yes' === $settings->include_meta ) : ?>
       <div class="<?= esc_attr( $module->classes( 'meta' ) ); ?>">

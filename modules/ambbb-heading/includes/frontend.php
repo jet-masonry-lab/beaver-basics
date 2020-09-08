@@ -5,7 +5,7 @@
 // - $settings
 ?>
 
-<<?= $settings->tag; ?> class="<?= esc_attr( $module->classes() ); ?>">
+<<?= tag_escape( $settings->tag ); ?> class="<?= esc_attr( $module->classes() ); ?>">
   <?php if ( $module->has( 'link' ) ) : ?>
     <a class="<?= esc_attr( $module->classes( 'link' ) ); ?>" href="<?= esc_url( $settings->link ); ?>" <?= $module->linkAttrs( 'link' ); ?>>
   <?php endif; ?>
@@ -13,4 +13,4 @@
   <?php if ( $module->has( 'link' ) ) : ?>
     </a>
   <?php endif; ?>
-</<?= $settings->tag; ?>>
+</<?= tag_escape( $settings->tag ); ?>>
