@@ -13,7 +13,7 @@
         && !empty( $button->text )
       ) : ?>
         <a class="<?= esc_attr( $module->classes( 'button', $button ) ); ?>" href="<?= esc_url( $button->link ); ?>" <?= $module->linkAttrs( 'link' ); ?>>
-          <span class="<?= esc_attr( $module->classes( 'text', $button ) ); ?>"><?= $module->escInlineHtml( $button->text ); ?></span>
+          <span class="<?= esc_attr( $module->classes( 'button-text', $button ) ); ?>"><?= $module->escInlineHtml( $button->text ); ?></span>
         </a>
       <?php endif;  ?>
     <?php endforeach; ?>

@@ -103,7 +103,7 @@ class ambbbFLBuilderModule extends FLBuilderModule
   {
     $classes = [];
     $classes[] = $this->bemClass( $element );
-    // ambbb__MODULE__ELEMENT_classes
+    // Filter: ambbb__MODULE__ELEMENT_classes
     $filter_tag = sprintf(
       'ambbb__%s__%s_classes',
       preg_replace( '/^ambbb[-_]*/', '', $this->slug ),

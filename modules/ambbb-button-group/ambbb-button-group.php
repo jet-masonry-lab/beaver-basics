@@ -14,10 +14,12 @@ class ambbbButtonGroupModule extends ambbbFLBuilderModule
     ] );
 
     add_filter( 'ambbb__button-group__button_classes', [__CLASS__, 'addButtonClasses'], 10, 3 );
+    add_filter( 'ambbb__button-group__button-text_classes', [__CLASS__, 'addButtonTextClasses'], 10, 3 );
   }
 
   public static function addButtonClasses( $classes, $module, $button )
   {
+    $classes[] = 'ambbb-button';
     if ( !empty( $button->variations ) ) {
       foreach( $button->variations as $variation ) {
         if ( !empty( $variation ) ) {
@@ -25,6 +27,12 @@ class ambbbButtonGroupModule extends ambbbFLBuilderModule
         }
       }
     }
+    return $classes;
+  }
+
+  public static function addButtonTextClasses( $classes, $module, $button )
+  {
+    $classes[] = 'ambbb-button__text';
     return $classes;
   }
 }
