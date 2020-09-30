@@ -39,7 +39,12 @@
       </<?= $settings->body_tag; ?>>
     <?php endif; ?>
 
-    <?php if ( !empty( $settings->buttons ) ) : ?>
+    <?php if (
+      'buttons' === $settings->link_type
+      && !empty( $settings->buttons )
+      && !empty( $settings->buttons[0]->link_url )
+      && !empty( $settings->buttons[0]->link_text )
+    ) : ?>
       <div class="<?= esc_attr( $module->classes( 'buttons' ) ); ?>">
         <?php foreach( $settings->buttons as $button ) : ?>
           <?php  if (
