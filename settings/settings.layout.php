@@ -438,7 +438,7 @@ class ambbbFlexSettings
   public static function init()
   {
     // Settings for rows, columns and modules
-    add_filter( 'fl_builder_register_settings_form', [__CLASS__, 'add_flex_settings'], 10, 2 );
+    // add_filter( 'fl_builder_register_settings_form', [__CLASS__, 'add_flex_settings'], 10, 2 );
 
     // Modify attributes for rows, columns and modules
     add_filter( 'fl_builder_row_attributes', [__CLASS__, 'add_row_flexbox_classes'], 10, 2 );
