@@ -5,6 +5,12 @@
 function ambbb__allowed_html__inline()
 {
   return [
+    'a' => [
+      'class' => [],
+      'href' => [],
+      'rel' => [],
+      'target' => [],
+    ],
     'b' => [ 'class' => [] ],
     'br' => [],
     'del' => [ 'class' => [] ],
