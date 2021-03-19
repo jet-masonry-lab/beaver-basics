@@ -20,7 +20,7 @@ if ( class_exists( 'FLBuilder' ) ) {
   add_action( 'wp_enqueue_scripts', 'ambbb__register_styles_scripts' );
 
   // Settings
-  include_once( 'settings/settings.layout.php');
+  // include_once( 'settings/settings.layout.php');
   include_once( 'settings/settings.variations.php');
 
 }
