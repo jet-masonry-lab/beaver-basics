@@ -27,12 +27,12 @@ class ambbbVideoModule extends ambbbFLBuilderModule
 
     $this->add_css(
       'video-js-css',
-      $this->url . 'css/video-js.min.css'
+      $this->url . 'css/video-js.css'
     );
 
     $this->add_js(
       'video-js-js',
-      $this->url . 'js/video.min.js'
+      $this->url . 'js/video-js.js'
     );
   }
 
