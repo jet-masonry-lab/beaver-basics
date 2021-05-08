@@ -2,6 +2,14 @@
 
 class ambbbVideoModule extends ambbbFLBuilderModule
 {
+  // extension => mime type
+  private static $_valid_types = [
+    'm3u8' => 'application/x-mpegURL',
+    'mp4' => 'video/mp4',
+    'ogg' => 'video/ogv',
+    'webm' => 'video/webm',
+  ];
+
   private $_valid_sources;
 
   public function __construct()
@@ -115,7 +123,7 @@ class ambbbVideoModule extends ambbbFLBuilderModule
     $source_extension = $this->getSourceExtension( $source );
     return (
       filter_var( $source, FILTER_VALIDATE_URL ) // valid URL
-      && in_array( $source_extension, ['mp4','webm'] ) // valid extension
+      && in_array( $source_extension, array_keys( self::$_valid_types ) ) // valid extension
     );
   }
 
@@ -128,10 +136,7 @@ class ambbbVideoModule extends ambbbFLBuilderModule
 
   public function getSourceType( $source )
   {
-    return sprintf(
-      'video/%s',
-      $this->getSourceExtension( $source )
-    );
+    return self::$_valid_types[ $this->getSourceExtension( $source ) ];
   }
 
   public static function addBaseClasses( $classes, $module )
