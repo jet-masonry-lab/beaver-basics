@@ -62,13 +62,13 @@ class ambbbVideoModule extends ambbbFLBuilderModule
   {
     $aspect_ratio = '';
     if (
-      'custom' == $this->settings->aspectRatio
-      && $this->has( 'aspectRatio_width' )
-      && $this->has( 'aspectRatio_height' )
+      'custom' == $this->settings->aspect_ratio
+      && $this->has( 'aspect_ratio_width' )
+      && $this->has( 'aspect_ratio_height' )
     ) {
-      $aspect_ratio = $this->settings->aspectRatio_width . ':' . $this->settings->aspectRatio_height;
+      $aspect_ratio = $this->settings->aspect_ratio_width . ':' . $this->settings->aspect_ratio_height;
     } else {
-      $aspect_ratio = str_replace( 'x', ':', $this->settings->aspectRatio );
+      $aspect_ratio = str_replace( 'x', ':', $this->settings->aspect_ratio );
     }
     return $aspect_ratio;
   }
@@ -83,23 +83,42 @@ class ambbbVideoModule extends ambbbFLBuilderModule
     $settings['controls'] = $this->mayBeBoolean( $this->settings->controls );
     $settings['loop'] = $this->mayBeBoolean( $this->settings->loop );
     $settings['muted'] = $this->mayBeBoolean( $this->settings->muted );
-    if ( $this->settings->poster ) {
-      $settings['poster'] = wp_get_attachment_image_url( $this->settings->poster, $this->settings->poster_size );
-    }
     $settings['preload'] = 'true' === $this->settings->preload ? 'auto' : '';
-    switch ( $this->settings->mode ) {
-      case 'fill':
-        $settings['fill'] = true;
-      break;
-      case 'fluid':
-        $settings['fluid'] = true;
-        if ( $this->has( 'aspectRatio' ) ) {
-          $settings['aspectRatio'] = $this->getAspectRatio();
-        } else {
-          $settings['fluid'] = true;
-        }
-      break;
+
+    // poster image
+    if ( 'media' === $this->settings->poster_type && $this->has( 'poster_media' ) ) {
+      $settings['poster'] = wp_get_attachment_image_url( $this->settings->poster_media, $this->settings->poster_media_size );
+    } elseif ( 'url' == $this->settings->poster_type && $this->has( 'poster_url' ) ) {
+      $settings['poster'] = esc_url( $this->settings->poster_url );
     }
+
+    // aspect ratio
+    if ( $this->has( 'aspect_ratio' ) ) {
+      $settings['aspectRatio'] = $this->getAspectRatio();
+    }
+
+    // fluid mode
+    if (
+      $this->has( 'aspect_ratio' )
+      || (
+        $this->has( 'mode' )
+        && 'fluid' === $this->settings->mode
+      )
+    ) {
+      $settings['fluid'] = true;
+    }
+
+    // fill mode
+    if (
+      ! $this->has( 'aspect_ratio' )
+      && (
+        $this->has( 'mode' )
+        && 'fill' === $this->settings->mode
+      )
+    ) {
+      $settings['fill'] = true;
+    }
+
     return wp_json_encode(
       array_filter(
         $settings
@@ -153,39 +172,64 @@ FLBuilder::register_module( 'ambbbVideoModule', [
   'general' => [
     'title' => __( 'General', 'amb-beaver-basics' ),
     'sections' => [
-      'content' => [
-        'title' => __( 'Content', 'amb-beaver-basics' ),
+      'sources' => [
+        'title' => __( 'Sources', 'amb-beaver-basics' ),
         'fields' => [
 
           'source' => [
             'type' => 'text',
             'label' => __( 'Source', 'amb-beaver-basics' ),
+            'help' => __( 'Supported formats: m3u8, mp4, ogg, webm' ),
             'default' => '',
             'multiple' => true,
           ],
 
-          'poster' => [
+        ],
+      ],
+      'poster' => [
+        'title' => __( 'Poster', 'amb-beaver-basics' ),
+        'fields' => [
+
+          'poster_type' => [
+            'type' => 'select',
+            'label' => __( 'Poster Type', 'amb-beaver-basics' ),
+            'default' => 'fluid',
+            'options' => [
+              'none' => __( 'None', 'amb-beaver-basics' ),
+              'media' => __( 'Media Library', 'amb-beaver-basics' ),
+              'url' => __( 'URL', 'amb-beaver-basics' ),
+            ],
+            'toggle' => [
+              'media' => [
+                'fields' => [ 'poster_media' ],
+              ],
+              'url' => [
+                'fields' => [ 'poster_url' ],
+              ],
+            ],
+          ],
+
+          'poster_media' => [
             'type' => 'photo',
             'label' => __( 'Poster', 'amb-beaver-basics' ),
             'show_remove' => true,
           ],
 
-          'mode' => [
-            'type' => 'select',
-            'label' => __( 'Mode', 'amb-beaver-basics' ),
-            'default' => 'fluid',
-            'options' => [
-              'fluid' => __( 'Fluid', 'amb-beaver-basics' ),
-              'fill' => __( 'Fill', 'amb-beaver-basics' ),
-            ],
-            'toggle' => [
-              'fluid' => [
-                'fields' => [ 'aspectRatio' ],
-              ],
-            ],
+          'poster_url' => [
+            'type' => 'link',
+            'label' => __( 'Poster URL', 'amb-beaver-basics' ),
+            'default' => '',
+            'show_target'   => false,
+            'show_nofollow' => false,
           ],
 
-          'aspectRatio' => [
+        ],
+      ],
+      'display' => [
+        'title' => __( 'Display', 'amb-beaver-basics' ),
+        'fields' => [
+
+          'aspect_ratio' => [
             'type' => 'select',
             'label' => __( 'Aspect Ratio', 'amb-beaver-basics' ),
             'default' => '',
@@ -199,22 +243,47 @@ FLBuilder::register_module( 'ambbbVideoModule', [
               'custom' => __( 'Custom', 'amb-beaver-basics' ),
             ],
             'toggle' => [
+              '' => [
+                'fields' => [ 'mode' ],
+              ],
               'custom' => [
-                'fields' => [ 'aspectRatio_width', 'aspectRatio_height' ],
+                'fields' => [ 'aspect_ratio_width', 'aspect_ratio_height' ],
               ],
             ],
           ],
 
-          'aspectRatio_width' => [
+          'aspect_ratio_width' => [
             'type' => 'unit',
             'label' => __( 'Aspect Width', 'amb-beaver-basics' ),
           ],
 
-          'aspectRatio_height' => [
+          'aspect_ratio_height' => [
             'type' => 'unit',
             'label' => __( 'Aspect Height', 'amb-beaver-basics' ),
           ],
 
+          'mode' => [
+            'type' => 'select',
+            'label' => __( 'Mode', 'amb-beaver-basics' ),
+            'default' => 'fluid',
+            'options' => [
+              'fluid' => __( 'Fluid', 'amb-beaver-basics' ),
+              'fill' => __( 'Fill', 'amb-beaver-basics' ),
+            ],
+          ],
+
+          'object_fit' => [
+            'type' => 'select',
+            'label' => __( 'Object Fit', 'amb-beaver-basics' ),
+            'default' => '',
+            'options' => [
+              '' => __( 'Default', 'amb-beaver-basics' ),
+              'contain' => __( 'Contain', 'amb-beaver-basics' ),
+              'cover' => __( 'Cover', 'amb-beaver-basics' ),
+              'fill' => __( 'Fill', 'amb-beaver-basics' ),
+              'scale-down' => __( 'Scale Down', 'amb-beaver-basics' ),
+            ],
+          ],
         ],
       ],
       'player' => [

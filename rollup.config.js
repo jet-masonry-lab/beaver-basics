@@ -114,6 +114,7 @@ let rollup_config = [
   get_module_css_config( 'separator', 'frontend' ),
   get_module_css_config( 'slider', 'frontend' ),
   get_module_css_config( 'video', 'video-js' ),
+  get_module_css_config( 'video', 'frontend' ),
   get_module_css_config( 'youtube', 'frontend' ),
 
   // JS Sources

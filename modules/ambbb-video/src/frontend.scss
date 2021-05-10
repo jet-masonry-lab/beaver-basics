@@ -1,0 +1,13 @@
+.ambbb-video {
+
+  // video element
+  .vjs-tech {
+    object-fit: var( --ambbb-video__object-fit );
+  }
+
+  // poster element
+  .vjs-poster {
+    background-size: var( --ambbb-video__object-fit );
+  }
+
+}
