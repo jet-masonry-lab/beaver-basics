@@ -1,3 +1,14 @@
+// This only works if the module parent is set to display:flex
+// Or if the module is otherwise given dimensions
+.fl-module-ambbb-video--fill {
+  &, & > .fl-module-content, & > .fl-module-content > .ambbb-video {
+    align-self: stretch;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+}
+
 .ambbb-video {
 
   // video element

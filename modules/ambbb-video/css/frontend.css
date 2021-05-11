@@ -1,1 +1,1 @@
-.ambbb-video .vjs-tech{-o-object-fit:var(--ambbb-video__object-fit);object-fit:var(--ambbb-video__object-fit)}.ambbb-video .vjs-poster{background-size:var(--ambbb-video__object-fit)}
+.fl-module-ambbb-video--fill,.fl-module-ambbb-video--fill>.fl-module-content,.fl-module-ambbb-video--fill>.fl-module-content>.ambbb-video{align-self:stretch;display:flex;flex:1;flex-direction:column}.ambbb-video .vjs-tech{-o-object-fit:var(--ambbb-video__object-fit);object-fit:var(--ambbb-video__object-fit)}.ambbb-video .vjs-poster{background-size:var(--ambbb-video__object-fit)}

@@ -23,6 +23,7 @@ class ambbbVideoModule extends ambbbFLBuilderModule
       'url'         => plugins_url( '/', __FILE__ )
     ] );
 
+    add_filter( 'fl_builder_module_attributes', [__CLASS__, 'addModuleClasses'], 10, 2 );
     add_filter( 'ambbb__video__base_classes', [__CLASS__, 'addBaseClasses'], 10, 3 );
 
     $this->add_css(
@@ -34,6 +35,31 @@ class ambbbVideoModule extends ambbbFLBuilderModule
       'video-js-js',
       $this->url . 'js/video-js.js'
     );
+  }
+
+  public static function addModuleClasses( $attrs, $module )
+  {
+    if (
+      'ambbb-video' === $module->slug
+      && $module->isFillMode()
+    ) {
+      $attrs['class'][] = 'fl-module-ambbb-video--fill';
+    }
+    return $attrs;
+  }
+
+  public static function addBaseClasses( $classes, $module )
+  {
+    if ( $module->shouldAutoplayOnScroll() ) {
+      $classes[] = $module->bemClass( NULL, 'play-on-scroll' );
+    }
+    if ( $module->isFluidMode() ) {
+      $classes[] = $module->bemClass( NULL, 'fluid' );
+    }
+    if ( $module->isFillMode() ) {
+      $classes[] = $module->bemClass( NULL, 'fill' );
+    }
+    return $classes;
   }
 
   public function shouldAutoplayOnScroll()
@@ -73,6 +99,28 @@ class ambbbVideoModule extends ambbbFLBuilderModule
     return $aspect_ratio;
   }
 
+  public function isFluidMode()
+  {
+    return (
+      $this->has( 'aspect_ratio' )
+      || (
+        $this->has( 'mode' )
+        && 'fluid' === $this->settings->mode
+      )
+    );
+  }
+
+  public function isFillMode()
+  {
+    return (
+      ! $this->has( 'aspect_ratio' )
+      && (
+        $this->has( 'mode' )
+        && 'fill' === $this->settings->mode
+      )
+    );
+  }
+
   public function getSetup()
   {
     // handle special cases
@@ -98,24 +146,12 @@ class ambbbVideoModule extends ambbbFLBuilderModule
     }
 
     // fluid mode
-    if (
-      $this->has( 'aspect_ratio' )
-      || (
-        $this->has( 'mode' )
-        && 'fluid' === $this->settings->mode
-      )
-    ) {
+    if ( $this->isFluidMode() ) {
       $settings['fluid'] = true;
     }
 
     // fill mode
-    if (
-      ! $this->has( 'aspect_ratio' )
-      && (
-        $this->has( 'mode' )
-        && 'fill' === $this->settings->mode
-      )
-    ) {
+    if ( $this->isFillMode() ) {
       $settings['fill'] = true;
     }
 
@@ -156,14 +192,6 @@ class ambbbVideoModule extends ambbbFLBuilderModule
   public function getSourceType( $source )
   {
     return self::$_valid_types[ $this->getSourceExtension( $source ) ];
-  }
-
-  public static function addBaseClasses( $classes, $module )
-  {
-    if ( $module->shouldAutoplayOnScroll() ) {
-      $classes[] = $module->bemClass( NULL, 'play-on-scroll' );
-    }
-    return $classes;
   }
 
 }
@@ -270,6 +298,12 @@ FLBuilder::register_module( 'ambbbVideoModule', [
               'fluid' => __( 'Fluid', 'amb-beaver-basics' ),
               'fill' => __( 'Fill', 'amb-beaver-basics' ),
             ],
+          ],
+
+          'mode_fill_note' => [
+            'type' => 'raw',
+            'label' => __( 'About Fill Mode', 'amb-beaver-basics' ),
+            'content' => __( 'Fill mode only works if the containing column is display:flex, or if the module is given a height with CSS.', 'amb-beaver-basics' ),
           ],
 
           'object_fit' => [
