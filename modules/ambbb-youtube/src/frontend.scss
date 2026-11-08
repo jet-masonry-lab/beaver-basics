@@ -1,8 +1,10 @@
+@use 'sass:math';
+
 .ambbb-youtube {
 
   &--fluid {
     position: relative;
-    padding-bottom: var( --ambbb-youtube__aspect-ratio, percentage( 9/16 ) );
+    padding-bottom: var( --ambbb-youtube__aspect-ratio, math.percentage( math.div( 9, 16 ) ) );
     height: 0;
     overflow: hidden;
     max-width: 100%;
