@@ -28,12 +28,16 @@ class ambbbVideoModule extends ambbbFLBuilderModule
 
     $this->add_css(
       'video-js-css',
-      $this->url . 'css/video-js.css'
+      $this->url . 'css/video-js.css',
+      [],
+      ambbb__asset_version( 'modules/ambbb-video/css/video-js.css' )
     );
 
     $this->add_js(
       'video-js-js',
-      $this->url . 'js/video-js.js'
+      $this->url . 'js/video-js.js',
+      [],
+      ambbb__asset_version( 'modules/ambbb-video/js/video-js.js' )
     );
   }
 
@@ -78,7 +82,7 @@ class ambbbVideoModule extends ambbbFLBuilderModule
         'ambbb-video-autoplay-scroll',
         $this->url . 'js/autoplay-scroll.js',
         [ 'jquery-waypoints' ],
-        NULL,
+        ambbb__asset_version( 'modules/ambbb-video/js/autoplay-scroll.js' ),
         true
       );
     }
