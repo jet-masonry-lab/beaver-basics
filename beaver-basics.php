@@ -28,8 +28,16 @@ if ( class_exists( 'FLBuilder' ) ) {
 
 function ambbb__register_styles_scripts()
 {
-  wp_register_style( 'ambbb-col-flexbox', plugins_url( '/dist/settings.layout.css', __FILE__ ), [], plugins_url( '/dist/settings.layout.css', __FILE__ ) );
+  wp_register_style( 'ambbb-col-flexbox', plugins_url( '/dist/settings.layout.css', __FILE__ ), [], ambbb__asset_version( 'dist/settings.layout.css' ) );
   wp_enqueue_style( 'ambbb-col-flexbox' );
+}
+
+
+// Asset version for cache busting: the file's modification time, so it changes whenever the file does
+function ambbb__asset_version( $relative_path )
+{
+  $file = plugin_dir_path( __FILE__ ) . ltrim( $relative_path, '/' );
+  return file_exists( $file ) ? (string) filemtime( $file ) : '0.1.0.0';
 }
 
 
