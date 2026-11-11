@@ -315,7 +315,7 @@ FLBuilder::register_module( 'ambbbVideoModule', [
             'label' => __( 'Object Fit', 'amb-beaver-basics' ),
             'default' => '',
             'options' => [
-              '' => __( 'Default', 'amb-beaver-basics' ),
+              '' => __( 'Default (Cover)', 'amb-beaver-basics' ),
               'contain' => __( 'Contain', 'amb-beaver-basics' ),
               'cover' => __( 'Cover', 'amb-beaver-basics' ),
               'fill' => __( 'Fill', 'amb-beaver-basics' ),

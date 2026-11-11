@@ -12,13 +12,15 @@
 .ambbb-video {
 
   // video element
+  // default to cover, so the video is never stretched unless Object Fit is set to Fill
   .vjs-tech {
-    object-fit: var( --ambbb-video__object-fit );
+    object-fit: var( --ambbb-video__object-fit, cover );
   }
 
-  // poster element
+  // poster element (video.js 7 draws the poster as a background image)
+  // uses its own variable because background-size has no fill or scale-down value
   .vjs-poster {
-    background-size: var( --ambbb-video__object-fit );
+    background-size: var( --ambbb-video__poster-size, cover );
   }
 
 }
