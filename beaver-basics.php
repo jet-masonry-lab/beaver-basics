@@ -23,6 +23,9 @@ if ( class_exists( 'FLBuilder' ) ) {
   // include_once( 'settings/settings.layout.php');
   include_once( 'settings/settings.variations.php');
 
+  // Builder
+  include_once( 'builder/builder.strip-important.php');
+
 }
 
 
