@@ -15,9 +15,6 @@ class ambbbSearchFormModule extends ambbbFLBuilderModule
       'dir'         => plugin_dir_path( __FILE__ ),
       'url'         => plugins_url( '/', __FILE__ )
     ] );
-
-    // Set base name for BEM classes
-    $this->_bem_base = 'search-form';
   }
 }
 
