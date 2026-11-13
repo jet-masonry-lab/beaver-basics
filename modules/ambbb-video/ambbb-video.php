@@ -139,7 +139,7 @@ class ambbbVideoModule extends ambbbFLBuilderModule
 
     // poster image
     if ( 'media' === $this->settings->poster_type && $this->has( 'poster_media' ) ) {
-      $settings['poster'] = wp_get_attachment_image_url( $this->settings->poster_media, $this->settings->poster_media_size );
+      $settings['poster'] = wp_get_attachment_image_url( $this->settings->poster_media, $this->settings->poster_media_size ?? 'full' );
     } elseif ( 'url' == $this->settings->poster_type && $this->has( 'poster_url' ) ) {
       $settings['poster'] = esc_url( $this->settings->poster_url );
     }
@@ -193,9 +193,19 @@ class ambbbVideoModule extends ambbbFLBuilderModule
     return $source_extension;
   }
 
+  // Mime type, plus codecs from the WebM Codecs / MP4 Codecs setting if set,
+  // e.g. video/webm; codecs="av01.0.05M.08, opus". Browsers skip a source they
+  // can't decode (e.g. Safari without AV1) and play the next one.
   public function getSourceType( $source )
   {
-    return self::$_valid_types[ $this->getSourceExtension( $source ) ];
+    $extension = $this->getSourceExtension( $source );
+    $type = self::$_valid_types[ $extension ];
+    $codecs_setting = $extension . '_codecs';
+    if ( in_array( $extension, [ 'mp4', 'webm' ], true ) && $this->has( $codecs_setting ) ) {
+      $type .= sprintf( '; codecs="%s"', trim( str_replace( '"', '', $this->settings->$codecs_setting ) ) );
+    }
+    // Filter: ambbb__video__source_type
+    return apply_filters( 'ambbb__video__source_type', $type, $source, $this );
   }
 
 }
@@ -214,6 +224,22 @@ FLBuilder::register_module( 'ambbbVideoModule', [
             'help' => __( 'Supported formats: m3u8, mp4, ogg, webm' ),
             'default' => '',
             'multiple' => true,
+          ],
+
+          'webm_codecs' => [
+            'type' => 'text',
+            'label' => __( 'WebM Codecs', 'amb-beaver-basics' ),
+            'help' => __( 'Optional. Codecs of the WebM source(s), so browsers that can\'t play them use the next source. Example: av01.0.05M.08, opus', 'amb-beaver-basics' ),
+            'placeholder' => 'av01.0.05M.08, opus',
+            'default' => '',
+          ],
+
+          'mp4_codecs' => [
+            'type' => 'text',
+            'label' => __( 'MP4 Codecs', 'amb-beaver-basics' ),
+            'help' => __( 'Optional. Codecs of the MP4 source(s). Example: avc1.64001F, mp4a.40.2', 'amb-beaver-basics' ),
+            'placeholder' => 'avc1.64001F, mp4a.40.2',
+            'default' => '',
           ],
 
         ],
