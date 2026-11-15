@@ -4,6 +4,16 @@ import livereload from 'rollup-plugin-livereload';
 import postcss from 'rollup-plugin-postcss';
 import resolve from '@rollup/plugin-node-resolve';
 import { terser } from "rollup-plugin-terser";
+import { copyFileSync } from 'fs';
+
+
+// video.js: ship its standard build rather than bundling it.
+// It defines window.videojs (used by autoplay-scroll.js and the module's builder JS), and includes
+// the HLS/DASH streaming engine (VHS) for m3u8 sources, which browsers other than Safari can't play natively.
+copyFileSync(
+  'node_modules/video.js/dist/video.min.js',
+  'modules/ambbb-video/js/video-js.js'
+);
 
 
 let get_postcss_config = function()
@@ -120,7 +130,6 @@ let rollup_config = [
   // JS Sources
   get_module_js_config( 'slider', 'frontend' ),
   get_module_js_config( 'video', 'autoplay-scroll' ),
-  get_module_js_config( 'video', 'video-js' ),
 
 ];
 

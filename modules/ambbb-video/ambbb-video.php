@@ -20,7 +20,9 @@ class ambbbVideoModule extends ambbbFLBuilderModule
       'group'       => __( 'Beaver Basics', 'amb-beaver-basics' ),
       'category'    => __( 'BB - Media', 'amb-beaver-basics' ),
       'dir'         => plugin_dir_path( __FILE__ ),
-      'url'         => plugins_url( '/', __FILE__ )
+      'url'         => plugins_url( '/', __FILE__ ),
+      // re-render only this module on edit; includes/frontend.js.php restarts its player
+      'partial_refresh' => true,
     ] );
 
     add_filter( 'fl_builder_module_attributes', [__CLASS__, 'addModuleClasses'], 10, 2 );
