@@ -4,19 +4,13 @@
 // - $id
 // - $settings
 
-// allowed object-fit values => poster background-size equivalent
-$ambbb_video_fits = [
-  'contain'    => 'contain',
-  'cover'      => 'cover',
-  'fill'       => '100% 100%',
-  'scale-down' => 'contain',
-];
+// allowed object-fit values (applied to both the video and the poster image)
+$ambbb_video_fits = [ 'contain', 'cover', 'fill', 'scale-down' ];
 $ambbb_video_fit = $module->has( 'object_fit' ) ? $module->settings->object_fit : '';
 ?>
 
-<?php if ( isset( $ambbb_video_fits[ $ambbb_video_fit ] ) ) : ?>
+<?php if ( in_array( $ambbb_video_fit, $ambbb_video_fits, true ) ) : ?>
   .fl-node-<?= $id; ?> {
     --ambbb-video__object-fit: <?= $ambbb_video_fit; ?>;
-    --ambbb-video__poster-size: <?= $ambbb_video_fits[ $ambbb_video_fit ]; ?>;
   }
 <?php endif; ?>

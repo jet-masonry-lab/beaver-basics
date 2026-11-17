@@ -7,11 +7,11 @@ import { terser } from "rollup-plugin-terser";
 import { copyFileSync } from 'fs';
 
 
-// video.js: ship its standard build rather than bundling it.
-// It defines window.videojs (used by autoplay-scroll.js and the module's builder JS), and includes
-// the HLS/DASH streaming engine (VHS) for m3u8 sources, which browsers other than Safari can't play natively.
+// video.js: ship its standard core build rather than bundling it.
+// It defines window.videojs (used by autoplay-scroll.js and the module's builder JS) and leaves out
+// the HLS/DASH streaming engine (VHS): the Video module accepts mp4, ogg and webm sources only.
 copyFileSync(
-  'node_modules/video.js/dist/video.min.js',
+  'node_modules/video.js/dist/alt/video.core.min.js',
   'modules/ambbb-video/js/video-js.js'
 );
 
