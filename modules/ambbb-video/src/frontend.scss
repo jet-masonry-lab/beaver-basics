@@ -17,10 +17,10 @@
     object-fit: var( --ambbb-video__object-fit, cover );
   }
 
-  // poster element (video.js 7 draws the poster as a background image)
-  // uses its own variable because background-size has no fill or scale-down value
-  .vjs-poster {
-    background-size: var( --ambbb-video__poster-size, cover );
+  // poster image (video.js 8 draws the poster as an <img> inside .vjs-poster)
+  // same fit as the video, so the poster and first frame line up
+  .vjs-poster img {
+    object-fit: var( --ambbb-video__object-fit, cover );
   }
 
 }
