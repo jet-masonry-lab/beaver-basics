@@ -5,7 +5,7 @@ class ambbbVideoModule extends ambbbFLBuilderModule
   // extension => mime type
   private static $_valid_types = [
     'mp4' => 'video/mp4',
-    'ogg' => 'video/ogv',
+    'ogg' => 'video/ogg',
     'webm' => 'video/webm',
   ];
 
