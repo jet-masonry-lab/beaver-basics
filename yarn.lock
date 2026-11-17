@@ -2717,25 +2717,7 @@ util-deprecate@^1.0.2:
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
 
-video.js@8.24.1:
-  version "8.24.1"
-  resolved "https://registry.yarnpkg.com/video.js/-/video.js-8.24.1.tgz#5c72c5b73f3a0ac13af6c6b81670052c2ec4cc9d"
-  integrity sha512-Qh2WxVyiw6BEvpS95KCoZM8wt10r2iDvembOjHPftVcxY4QR53WVTDQlJEuI1J46Yo9Zw+6rRDIe62C+J+edfQ==
-  dependencies:
-    "@babel/runtime" "^7.28.4"
-    "@videojs/http-streaming" "^3.17.5"
-    "@videojs/vhs-utils" "^4.1.2"
-    "@videojs/xhr" "2.7.0"
-    aes-decrypter "^4.0.2"
-    global "4.4.0"
-    m3u8-parser "^7.2.0"
-    mpd-parser "^1.4.0"
-    mux.js "^7.0.1"
-    videojs-contrib-quality-levels "4.1.0"
-    videojs-font "4.2.0"
-    videojs-vtt.js "0.15.5"
-
-"video.js@^7 || ^8":
+"video.js@^7 || ^8", video.js@^8.24.1:
   version "8.24.2"
   resolved "https://registry.yarnpkg.com/video.js/-/video.js-8.24.2.tgz#e4e7fe445728c65b8533c90b5b14b5fc50e5e6b7"
   integrity sha512-Ya8gFnxWxr/m8YYdOOjOqsAVLtbZ4/RI6Vpqn4KoAFdKBjl8vy5KXF/n7Z4GqPtArBG05/Z71WX6/gZS3HWLbg==
