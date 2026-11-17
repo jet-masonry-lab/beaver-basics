@@ -4,7 +4,6 @@ class ambbbVideoModule extends ambbbFLBuilderModule
 {
   // extension => mime type
   private static $_valid_types = [
-    'm3u8' => 'application/x-mpegURL',
     'mp4' => 'video/mp4',
     'ogg' => 'video/ogv',
     'webm' => 'video/webm',
@@ -223,7 +222,7 @@ FLBuilder::register_module( 'ambbbVideoModule', [
           'source' => [
             'type' => 'text',
             'label' => __( 'Source', 'amb-beaver-basics' ),
-            'help' => __( 'Supported formats: m3u8, mp4, ogg, webm' ),
+            'help' => __( 'Supported formats: mp4, ogg, webm', 'amb-beaver-basics' ),
             'default' => '',
             'multiple' => true,
           ],
