@@ -178,6 +178,16 @@ class ambbbVideoModule extends ambbbFLBuilderModule
     return $this->_valid_sources;
   }
 
+  // The "no valid sources" warning is for editors only: visitors, saved post content
+  // and SEO descriptions built from it should never contain it.
+  // Publishing renders the layout into post_content inside a builder AJAX request, where
+  // is_builder_active() is still true (FLBuilderModel::save_layout() resets it only after
+  // rendering), so that render is excluded via Beaver Builder's fl_ajax_before_save_layout hook.
+  public function shouldShowNoSourcesMessage()
+  {
+    return FLBuilderModel::is_builder_active() && ! did_action( 'fl_ajax_before_save_layout' );
+  }
+
   public function sourceIsValid( $source )
   {
     $source_extension = $this->getSourceExtension( $source );

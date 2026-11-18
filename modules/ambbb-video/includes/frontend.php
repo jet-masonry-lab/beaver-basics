@@ -9,7 +9,9 @@
 
   <?php if ( ! $module->getValidSources() ) : ?>
 
-    <p>No valid video sources defined.</p>
+    <?php if ( $module->shouldShowNoSourcesMessage() ) : ?>
+      <p>No valid video sources defined.</p>
+    <?php endif; ?>
 
   <?php else: ?>
 
